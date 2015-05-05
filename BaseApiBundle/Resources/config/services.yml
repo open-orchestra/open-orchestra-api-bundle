@@ -1,0 +1,32 @@
+parameters:
+    open_orchestra_api.subscriber.serializer.class: OpenOrchestra\BaseApi\EventSubscriber\SerializerSubscriber
+    open_orchestra_api.annotation_reader.class: Doctrine\Common\Annotations\AnnotationReader
+    open_orchestra_api.subscriber.http_exception.class: OpenOrchestra\BaseApi\EventSubscriber\HttpExceptionSubscriber
+    open_orchestra_api.context.group.class: OpenOrchestra\BaseApi\Context\GroupContext
+    open_orchestra_api.subscriber.group_context.class: OpenOrchestra\BaseApi\EventSubscriber\GroupContextSubscriber
+
+services:
+    open_orchestra_api.annotation_reader:
+        class: %open_orchestra_api.annotation_reader.class%
+    open_orchestra_api.subscriber.serializer:
+        class: %open_orchestra_api.subscriber.serializer.class%
+        arguments:
+            - @serializer
+            - @open_orchestra_api.annotation_reader
+            - @controller_resolver
+        tags:
+            - { name: kernel.event_subscriber }
+    open_orchestra_api.subscriber.http_exception:
+        class: %open_orchestra_api.subscriber.http_exception.class%
+        tags:
+            - { name: kernel.event_subscriber }
+    open_orchestra_api.context.group:
+        class: %open_orchestra_api.context.group.class%
+    open_orchestra_api.subscriber.group_context:
+        class: %open_orchestra_api.subscriber.group_context.class%
+        arguments:
+            - @open_orchestra_api.context.group
+            - @open_orchestra_api.annotation_reader
+            - @controller_resolver
+        tags:
+            - { name: kernel.event_subscriber }
