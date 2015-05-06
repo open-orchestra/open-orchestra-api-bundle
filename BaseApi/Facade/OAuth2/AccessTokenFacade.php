@@ -1,9 +1,9 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\Facade\OAuth2;
+namespace OpenOrchestra\BaseApi\Facade\OAuth2;
 
 use JMS\Serializer\Annotation as Serializer;
-use OpenOrchestra\BaseApiBundle\Facade\AbstractFacade;
+use OpenOrchestra\BaseApi\Facade\AbstractFacade;
 
 /**
  * Class AccessTokenFacade
