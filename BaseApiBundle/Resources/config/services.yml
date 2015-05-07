@@ -6,13 +6,11 @@ parameters:
     open_orchestra_api.subscriber.group_context.class: OpenOrchestra\BaseApi\EventSubscriber\GroupContextSubscriber
 
 services:
-    open_orchestra_api.annotation_reader:
-        class: %open_orchestra_api.annotation_reader.class%
     open_orchestra_api.subscriber.serializer:
         class: %open_orchestra_api.subscriber.serializer.class%
         arguments:
             - @serializer
-            - @open_orchestra_api.annotation_reader
+            - @annotation_reader
             - @controller_resolver
         tags:
             - { name: kernel.event_subscriber }
@@ -26,7 +24,7 @@ services:
         class: %open_orchestra_api.subscriber.group_context.class%
         arguments:
             - @open_orchestra_api.context.group
-            - @open_orchestra_api.annotation_reader
+            - @annotation_reader
             - @controller_resolver
         tags:
             - { name: kernel.event_subscriber }

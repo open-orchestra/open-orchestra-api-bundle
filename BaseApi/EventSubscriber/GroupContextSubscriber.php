@@ -2,10 +2,9 @@
 
 namespace OpenOrchestra\BaseApi\EventSubscriber;
 
-use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\Reader;
 use OpenOrchestra\BaseApi\Context\GroupContext;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -19,10 +18,10 @@ class GroupContextSubscriber extends AbstractSubscriber implements EventSubscrib
 
     /**
      * @param GroupContext                $groupContext
-     * @param AnnotationReader            $annotationReader
+     * @param Reader                      $annotationReader
      * @param ControllerResolverInterface $resolver
      */
-    public function __construct(GroupContext $groupContext, AnnotationReader $annotationReader, ControllerResolverInterface $resolver)
+    public function __construct(GroupContext $groupContext, Reader $annotationReader, ControllerResolverInterface $resolver)
     {
         parent::__construct($annotationReader, $resolver);
         $this->groupContext = $groupContext;

@@ -2,15 +2,13 @@
 
 namespace OpenOrchestra\BaseApi\EventSubscriber;
 
-use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\Reader;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -22,10 +20,10 @@ class SerializerSubscriber extends AbstractSubscriber implements EventSubscriber
 
     /**
      * @param SerializerInterface         $serializer
-     * @param AnnotationReader            $annotationReader
+     * @param Reader                      $annotationReader
      * @param ControllerResolverInterface $resolver
      */
-    public function __construct(SerializerInterface $serializer, AnnotationReader $annotationReader, ControllerResolverInterface $resolver)
+    public function __construct(SerializerInterface $serializer, Reader $annotationReader, ControllerResolverInterface $resolver)
     {
         parent::__construct($annotationReader, $resolver);
         $this->serializer = $serializer;
