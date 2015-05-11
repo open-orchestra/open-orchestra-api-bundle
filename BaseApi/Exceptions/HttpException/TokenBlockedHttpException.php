@@ -26,6 +26,6 @@ class TokenBlockedHttpException extends ApiException
         $errorSupport       = self::ERROR_SUPPORT;
         $redirection        = self::REDIRECTION;
 
-        parent::__construct($statusCode, $errorCode, $errorSupport, $developerMessage, $humanMessage, $redirection);
+        parent::__construct($statusCode, $errorCode, $developerMessage, $humanMessage);
     }
 }
