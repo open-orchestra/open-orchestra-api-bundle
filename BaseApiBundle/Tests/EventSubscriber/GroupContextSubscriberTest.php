@@ -29,7 +29,7 @@ class GroupContextSubscriberTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->resolver = Phake::mock('Symfony\Component\HttpKernel\Controller\ControllerResolverInterface');
-        $this->annotationReader = Phake::mock('Doctrine\Common\Annotations\AnnotationReader');
+        $this->annotationReader = Phake::mock('Doctrine\Common\Annotations\Reader');
         Phake::when($this->resolver)->getController(Phake::anyParameters())->thenReturn(array('\DateTime', 'add'));
 
         $this->request = Phake::mock('Symfony\Component\HttpFoundation\Request');
@@ -64,13 +64,11 @@ class GroupContextSubscriberTest extends \PHPUnit_Framework_TestCase
     /**
      * @param $masterRequest
      * @param $annotationPresent
-     * @param $route
      * @dataProvider provideKernelRequestData
      */
-    public function testOnKernelRequestWithNoInteraction($masterRequest, $annotationPresent, $route)
+    public function testOnKernelRequestWithNoInteraction($masterRequest, $annotationPresent)
     {
         Phake::when($this->event)->isMasterRequest()->thenReturn($masterRequest);
-        Phake::when($this->request)->get('_route')->thenReturn($route);
         Phake::when($this->annotationReader)->getMethodAnnotation(Phake::anyParameters())->thenReturn($annotationPresent);
 
         $this->assertNull($this->subscriber->onKernelRequest($this->event));
@@ -83,13 +81,9 @@ class GroupContextSubscriberTest extends \PHPUnit_Framework_TestCase
     public function provideKernelRequestData()
     {
         return array(
-            array(true, false, 'open_orchestra_api'),
-            array(false, false, 'open_orchestra_api'),
-            array(false, true, 'open_orchestra_api'),
-            array(true, true, 'other_route'),
-            array(true, false, 'other_route'),
-            array(false, false, 'other_route'),
-            array(false, true, 'other_route'),
+            array(true, false),
+            array(false, false),
+            array(false, true),
         );
     }
 

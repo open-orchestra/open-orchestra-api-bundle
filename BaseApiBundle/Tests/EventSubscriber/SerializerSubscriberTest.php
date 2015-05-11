@@ -33,7 +33,7 @@ class SerializerSubscriberTest extends \PHPUnit_Framework_TestCase
     {
         $this->resolver = Phake::mock('Symfony\Component\HttpKernel\Controller\ControllerResolverInterface');
         $this->serializer = Phake::mock('JMS\Serializer\SerializerInterface');
-        $this->annotationReader = Phake::mock('Doctrine\Common\Annotations\AnnotationReader');
+        $this->annotationReader = Phake::mock('Doctrine\Common\Annotations\Reader');
 
         $this->request = Phake::mock('Symfony\Component\HttpFoundation\Request');
         Phake::when($this->request)->get('_route')->thenReturn('open_orchestra_api');

@@ -2,9 +2,8 @@
 
 namespace OpenOrchestra\BaseApi\EventSubscriber;
 
-use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\Reader;
 use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\KernelEvent;
 
 /**
@@ -16,23 +15,13 @@ abstract class AbstractSubscriber
     protected $annotationReader;
 
     /**
-     * @param AnnotationReader            $annotationReader
+     * @param Reader                      $annotationReader
      * @param ControllerResolverInterface $resolver
      */
-    public function __construct(AnnotationReader $annotationReader, ControllerResolverInterface $resolver)
+    public function __construct(Reader $annotationReader, ControllerResolverInterface $resolver)
     {
         $this->resolver = $resolver;
         $this->annotationReader = $annotationReader;
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return boolean
-     */
-    protected function isApiRequest(Request $request)
-    {
-        return 0 === strpos($request->get('_route'), 'open_orchestra_api');
     }
 
     /**
@@ -59,6 +48,6 @@ abstract class AbstractSubscriber
      */
     protected function eventElligible(KernelEvent $event)
     {
-        return $event->isMasterRequest() && $this->isApiRequest($event->getRequest());
+        return $event->isMasterRequest();
     }
 }
