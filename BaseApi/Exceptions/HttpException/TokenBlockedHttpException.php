@@ -11,8 +11,6 @@ class TokenBlockedHttpException extends ApiException
     const HUMAN_MESSAGE      = 'api.exception.token_blocked';
     const STATUS_CODE        = '401';
     const ERROR_CODE         = 'x';
-    const ERROR_SUPPORT      = 'global_platform_main_contact_contact';
-    const REDIRECTION        = 'logout';
 
     /**
      * Constructor
@@ -23,8 +21,6 @@ class TokenBlockedHttpException extends ApiException
         $humanMessage       = self::HUMAN_MESSAGE;
         $statusCode         = self::STATUS_CODE;
         $errorCode          = self::ERROR_CODE;
-        $errorSupport       = self::ERROR_SUPPORT;
-        $redirection        = self::REDIRECTION;
 
         parent::__construct($statusCode, $errorCode, $developerMessage, $humanMessage);
     }
