@@ -12,8 +12,6 @@ class BadUserCredentialsHttpException extends ApiException
     const HUMAN_MESSAGE      = 'api.exception.user_bad_credentials';
     const STATUS_CODE        = '401';
     const ERROR_CODE         = 'x';
-    const ERROR_SUPPORT      = 'global_platform_main_contact_contact';
-    const REDIRECTION        = 'logout';
 
     /**
      * Constructor
@@ -24,9 +22,7 @@ class BadUserCredentialsHttpException extends ApiException
         $humanMessage       = self::HUMAN_MESSAGE;
         $statusCode         = self::STATUS_CODE;
         $errorCode          = self::ERROR_CODE;
-        $errorSupport       = self::ERROR_SUPPORT;
-        $redirection        = self::REDIRECTION;
 
-        parent::__construct($statusCode, $errorCode, $errorSupport, $developerMessage, $humanMessage, $redirection);
+        parent::__construct($statusCode, $errorCode, $developerMessage, $humanMessage);
     }
 }
