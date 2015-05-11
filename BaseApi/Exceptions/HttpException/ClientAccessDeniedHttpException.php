@@ -9,7 +9,7 @@ class ClientAccessDeniedHttpException extends ApiException
 {
     const DEVELOPER_MESSAGE  = 'client.access_denied';
     const HUMAN_MESSAGE      = 'api.exception.client_access_denied';
-    const STATUS_CODE        = '404';
+    const STATUS_CODE        = '401';
     const ERROR_CODE         = 'x';
     const ERROR_SUPPORT      = 'global_platform_main_contact_contact';
     const REDIRECTION        = 'logout';
