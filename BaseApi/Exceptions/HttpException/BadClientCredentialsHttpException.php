@@ -9,7 +9,7 @@ class BadClientCredentialsHttpException extends ApiException
 {
     const DEVELOPER_MESSAGE  = 'client.bad_credentials';
     const HUMAN_MESSAGE      = 'open_orchestra_api.client.bad_credentials';
-    const STATUS_CODE        = '404';
+    const STATUS_CODE        = '401';
     const ERROR_CODE         = 'x';
 
     /**
