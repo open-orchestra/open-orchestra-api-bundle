@@ -9,7 +9,7 @@ class TokenBlockedHttpException extends ApiException
 {
     const DEVELOPER_MESSAGE  = 'token.blocked';
     const HUMAN_MESSAGE      = 'api.exception.token_blocked';
-    const STATUS_CODE        = '404';
+    const STATUS_CODE        = '401';
     const ERROR_CODE         = 'x';
     const ERROR_SUPPORT      = 'global_platform_main_contact_contact';
     const REDIRECTION        = 'logout';
