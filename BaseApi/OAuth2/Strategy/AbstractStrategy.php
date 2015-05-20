@@ -10,7 +10,7 @@ use OpenOrchestra\UserBundle\Model\ApiClientInterface;
 use OpenOrchestra\UserBundle\Repository\AccessTokenRepository;
 use OpenOrchestra\UserBundle\Repository\ApiClientRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Validator\LegacyValidator;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class AbstractStrategy
@@ -28,7 +28,7 @@ abstract class AbstractStrategy implements StrategyInterface
      * @param ApiClientRepository   $apiClientRepository
      * @param AccessTokenRepository $accessTokenRepository
      * @param Serializer            $serializer
-     * @param LegacyValidator       $validator
+     * @param ValidatorInterface    $validator
      * @param string                $tokenExpiration
      * @param string                $tokenClass
      */
@@ -36,7 +36,7 @@ abstract class AbstractStrategy implements StrategyInterface
         ApiClientRepository $apiClientRepository,
         AccessTokenRepository $accessTokenRepository,
         Serializer $serializer,
-        LegacyValidator $validator,
+        ValidatorInterface $validator,
         $tokenExpiration,
         $tokenClass
     )
