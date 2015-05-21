@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 /**
  * Class HttpExceptionSubscriber
  */
-class HttpExceptionSubscriber extends ContainerAware implements EventSubscriberInterface
+class HttpExceptionSubscriber implements EventSubscriberInterface
 {
     /**
      * @param GetResponseForExceptionEvent $event
