@@ -5,7 +5,7 @@ namespace OpenOrchestra\BaseApi\Security\Authentication\Provider;
 use OpenOrchestra\BaseApi\Exceptions\HttpException\TokenBlockedHttpException;
 use OpenOrchestra\BaseApi\Exceptions\HttpException\UserNotFoundHttpException;
 use OpenOrchestra\BaseApi\Security\Authentication\Token\OAuth2Token;
-use OpenOrchestra\UserBundle\Repository\AccessTokenRepository;
+use OpenOrchestra\BaseApiBundle\Repository\AccessTokenRepository;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
@@ -57,5 +57,4 @@ class OAuth2AuthenticationProvider implements AuthenticationProviderInterface
     {
         return $token instanceof OAuth2Token;
     }
-
 }

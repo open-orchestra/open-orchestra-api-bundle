@@ -3,7 +3,6 @@
 namespace OpenOrchestra\BaseApi\OAuth2\Strategy;
 
 use OpenOrchestra\BaseApi\Facade\OAuth2\AccessTokenFacade;
-use OpenOrchestra\UserBundle\Document\AccessToken;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
