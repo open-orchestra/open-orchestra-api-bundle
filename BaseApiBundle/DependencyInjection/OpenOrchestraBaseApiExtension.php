@@ -19,6 +19,28 @@ class OpenOrchestraBaseApiExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $factoryService = $config['factory_service'];
+        if (is_null($factoryService) && class_exists('Doctrine\ODM\MongoDB\DocumentManager')) {
+            $factoryService = 'doctrine.odm.mongodb.document_manager';
+        } elseif (is_null($factoryService) && class_exists('Doctrine\ORM\EntityManager')) {
+            $factoryService = 'doctrine.orm.entity_manager';
+        }
+
+        foreach ($config['document'] as $class => $content) {
+            if (is_array($content)) {
+                $container->setParameter('open_orchestra_api.document.' . $class . '.class', $content['class']);
+                if (array_key_exists('repository', $content)) {
+                    $container->register('open_orchestra_api.repository.' . $class, $content['repository'])
+                        ->setFactoryService($factoryService)
+                        ->setFactoryMethod('getRepository')
+                        ->addArgument($content['class']);
+                }
+            }
+        }
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
         $loader->load('transformer.yml');

@@ -8,11 +8,11 @@ services:
     open_orchestra_api.oauth2.strategy.client_credentials_grant:
         class: %open_orchestra_api.oauth2.strategy.client_credentials_grant.class%
         arguments:
-            - @open_orchestra_user.repository.api_client
-            - @open_orchestra_user.repository.access_token
+            - @open_orchestra_api.repository.api_client
+            - @open_orchestra_api.repository.access_token
             - @serializer
             - @validator
             - '+1month'
-            - %open_orchestra_user.document.access_token.class%
+            - %open_orchestra_api.document.access_token.class%
         tags:
             - { name: open_orchestra_api.oauth2.strategy }

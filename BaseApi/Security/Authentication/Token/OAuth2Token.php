@@ -2,7 +2,7 @@
 
 namespace OpenOrchestra\BaseApi\Security\Authentication\Token;
 
-use OpenOrchestra\UserBundle\Model\TokenInterface;
+use OpenOrchestra\BaseApi\Model\TokenInterface;
 use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 use Symfony\Component\Security\Core\User\UserInterface;
 

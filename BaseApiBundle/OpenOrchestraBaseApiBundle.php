@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\BaseApiBundle;
 
+use OpenOrchestra\BaseApiBundle\DependencyInjection\Compiler\EntityResolverCompilerPass;
 use OpenOrchestra\BaseApiBundle\DependencyInjection\Compiler\Oauth2CompilerPass;
 use OpenOrchestra\BaseApiBundle\DependencyInjection\Compiler\TransformerCompilerPass;
 use OpenOrchestra\BaseApiBundle\DependencyInjection\Security\Factory\OAuth2Factory;
@@ -22,6 +23,7 @@ class OpenOrchestraBaseApiBundle extends Bundle
 
         $container->addCompilerPass(new TransformerCompilerPass());
         $container->addCompilerPass(new Oauth2CompilerPass());
+        $container->addCompilerPass(new EntityResolverCompilerPass());
 
         $extension = $container->getExtension('security');
         $extension->addSecurityListenerFactory(new OAuth2Factory());

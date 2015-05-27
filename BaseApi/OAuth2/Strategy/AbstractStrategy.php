@@ -6,9 +6,9 @@ use OpenOrchestra\BaseApi\Exceptions\HttpException\BadClientCredentialsHttpExcep
 use OpenOrchestra\BaseApi\Exceptions\HttpException\ClientBlockedHttpException;
 use OpenOrchestra\BaseApi\Exceptions\HttpException\ClientNonTrustedHttpException;
 use JMS\Serializer\Serializer;
-use OpenOrchestra\UserBundle\Model\ApiClientInterface;
-use OpenOrchestra\UserBundle\Repository\AccessTokenRepository;
-use OpenOrchestra\UserBundle\Repository\ApiClientRepository;
+use OpenOrchestra\BaseApi\Model\ApiClientInterface;
+use OpenOrchestra\BaseApiBundle\Repository\AccessTokenRepository;
+use OpenOrchestra\BaseApiBundle\Repository\ApiClientRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
