@@ -38,11 +38,11 @@ abstract class BaseController extends Controller
     }
 
     /**
-     * @param Request                       $request
-     * @param string                        $id
-     * @param string                        $type
-     * @param string                        $event
-     * @param string                        $eventClass
+     * @param Request $request
+     * @param string  $id
+     * @param string  $type
+     * @param string  $event
+     * @param string  $eventClass
      *
      * @return Response
      */
