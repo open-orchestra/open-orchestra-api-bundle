@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * Class BaseController
@@ -38,10 +39,10 @@ abstract class BaseController extends Controller
 
     /**
      * @param Request $request
-     * @param string $id
-     * @param string $type
-     * @param string $event
-     * @param string $eventClass
+     * @param string  $id
+     * @param string  $type
+     * @param string  $event
+     * @param string  $eventClass
      *
      * @return Response
      */
@@ -56,9 +57,22 @@ abstract class BaseController extends Controller
         );
 
         $mixed = $this->get('open_orchestra_model.repository.' . $typeName)->find($id);
+        $fromStatus = $mixed->getStatus();
         $mixed = $this->get('open_orchestra_api.transformer_manager')->get($typeName)->reverseTransform($facade, $mixed);
+        $toStatus = $mixed->getStatus();
 
-        if ($this->isValid($mixed)) {
+        $granted = true;
+        if ($fromStatus->getId() != $toStatus->getId()) {
+            $role = $this->get('open_orchestra_model.repository.role')->findOneByFromStatusAndToStatus($fromStatus, $toStatus);
+            $workflowFunctions = $this->get('open_orchestra_workflow_function.repository.workflow_function')->findByRole($role);
+            $attributes = array();
+            foreach($workflowFunctions as $workflowFunction){
+                $attributes[] = $workflowFunction->getId();
+            }
+            $granted = $this->get('security.authorization_checker')->isGranted($attributes, $mixed);
+        }
+
+        if ($this->isValid($mixed) && $granted) {
             $em = $this->get('doctrine.odm.mongodb.document_manager');
             $em->persist($mixed);
             $em->flush();
