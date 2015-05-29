@@ -3,7 +3,6 @@
 namespace OpenOrchestra\BaseApi\EventSubscriber;
 
 use OpenOrchestra\BaseApi\Exceptions\HttpException\ApiException;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
