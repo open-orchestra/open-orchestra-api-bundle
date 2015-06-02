@@ -6,8 +6,8 @@ use OpenOrchestra\BaseApi\Exceptions\HttpException\ClientAccessDeniedHttpExcepti
 use OpenOrchestra\BaseApi\Security\Authentication\Token\OAuth2Token;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Http\Firewall\ListenerInterface;
 
 /**
@@ -19,10 +19,10 @@ class OAuth2Listener implements ListenerInterface
     protected $authenticationManager;
 
     /**
-     * @param SecurityContextInterface       $securityContext
+     * @param TokenStorageInterface          $securityContext
      * @param AuthenticationManagerInterface $authenticationManager
      */
-    public function __construct(SecurityContextInterface $securityContext, AuthenticationManagerInterface $authenticationManager)
+    public function __construct(TokenStorageInterface $securityContext, AuthenticationManagerInterface $authenticationManager)
     {
         $this->securityContext       = $securityContext;
         $this->authenticationManager = $authenticationManager;
