@@ -10,5 +10,5 @@ services:
     open_orchestra_api.security.listener.oauth2:
         class: %open_orchestra_api.security.listener.oauth2.class%
         arguments:
-            - @security.context
+            - @security.token_storage
             - @security.authentication.manager
