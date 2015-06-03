@@ -71,46 +71,26 @@ class AccessTokenManager
 
     /**
      * @param ApiClientInterface $client
-     *
-     * @return TokenInterface
-     */
-    public function findOneByClientWithoutUser(ApiClientInterface $client)
-    {
-        return $this->accessTokenRepository->findOneByClientWithoutUser($client);
-    }
-
-    /**
-     * @param string $token
-     *
-     * @return TokenInterface
-     */
-    public function findOneByCode($token)
-    {
-        return $this->accessTokenRepository->findOneByCode($token);
-    }
-
-    /**
      * @param UserInterface      $user
-     * @param ApiClientInterface $client
      *
      * @return TokenInterface
      */
-    public function create(UserInterface $user = null, ApiClientInterface $client)
+    public function create(ApiClientInterface $client, UserInterface $user = null)
     {
         $tokenClass = $this->tokenClass;
 
-        return $tokenClass::create($user, $client);
+        return $tokenClass::create($client, $user);
     }
 
     /**
-     * @param UserInterface      $user
      * @param ApiClientInterface $client
+     * @param UserInterface      $user
      *
      * @return TokenInterface
      */
-    public function createWithExpirationDate(UserInterface $user = null, ApiClientInterface $client)
+    public function createWithExpirationDate(ApiClientInterface $client, UserInterface $user = null)
     {
-        $accessToken = $this->create($user, $client);
+        $accessToken = $this->create($client, $user);
         $accessToken->setExpiredAt(new \DateTime($this->tokenExpiration));
 
         return $accessToken;

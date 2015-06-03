@@ -18,24 +18,28 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  */
 abstract class AbstractStrategy implements StrategyInterface
 {
+    protected $accessTokenRepository;
     protected $apiClientRepository;
     protected $accessTokenManager;
     protected $serializer;
     protected $validator;
 
     /**
-     * @param ApiClientRepository $apiClientRepository
-     * @param Serializer          $serializer
-     * @param ValidatorInterface  $validator
-     * @param AccessTokenManager  $accessTokenManager
+     * @param ApiClientRepository   $apiClientRepository
+     * @param Serializer            $serializer
+     * @param ValidatorInterface    $validator
+     * @param AccessTokenManager    $accessTokenManager
+     * @param AccessTokenRepository $accessTokenRepository
      */
     public function __construct(
         ApiClientRepository $apiClientRepository,
         Serializer $serializer,
         ValidatorInterface $validator,
-        AccessTokenManager $accessTokenManager
+        AccessTokenManager $accessTokenManager,
+        AccessTokenRepository $accessTokenRepository
     )
     {
+        $this->accessTokenRepository = $accessTokenRepository;
         $this->apiClientRepository = $apiClientRepository;
         $this->accessTokenManager = $accessTokenManager;
         $this->serializer = $serializer;
