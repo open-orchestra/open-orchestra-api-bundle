@@ -41,6 +41,8 @@ class AccessTokenRepository extends DocumentRepository
 
     /**
      * @param TokenInterface $accessToken
+     *
+     * @deprecated use the AccessTokenManager instead, will be removed in 0.2.7
      */
     public function save(TokenInterface $accessToken)
     {
@@ -54,6 +56,8 @@ class AccessTokenRepository extends DocumentRepository
     /**
      * @param ApiClientInterface $client
      * @param UserInterface      $user
+     *
+     * @deprecated use the AccessTokenManager instead, will be removed in 0.2.7
      */
     public function revokeNonUsedAccessToken(ApiClientInterface $client, UserInterface $user = null)
     {
