@@ -3,6 +3,7 @@
 namespace OpenOrchestra\BaseApi\Security\Authentication\Provider;
 
 use OpenOrchestra\BaseApi\Exceptions\HttpException\TokenBlockedHttpException;
+use OpenOrchestra\BaseApi\Exceptions\HttpException\TokenExpiredHttpException;
 use OpenOrchestra\BaseApi\Exceptions\HttpException\UserNotFoundHttpException;
 use OpenOrchestra\BaseApi\Security\Authentication\Token\OAuth2Token;
 use OpenOrchestra\BaseApiBundle\Repository\AccessTokenRepository;
@@ -30,6 +31,7 @@ class OAuth2AuthenticationProvider implements AuthenticationProviderInterface
      * @param TokenInterface $token The TokenInterface instance to authenticate
      *
      * @throws TokenBlockedHttpException
+     * @throws TokenExpiredHttpException
      * @throws UserNotFoundHttpException
      * @return TokenInterface An authenticated TokenInterface instance, never null
      */
@@ -39,6 +41,9 @@ class OAuth2AuthenticationProvider implements AuthenticationProviderInterface
         $accessTokenEntity = $this->accessTokenRepository->findOneByCode($accessToken);
         if (is_null($accessTokenEntity) || $accessTokenEntity->isBlocked()) {
             throw new TokenBlockedHttpException();
+        }
+        if ($accessTokenEntity->isExpired()) {
+            throw new TokenExpiredHttpException();
         }
 
         $authenticatedToken = OAuth2Token::createFromAccessTokenEntity($accessTokenEntity);
