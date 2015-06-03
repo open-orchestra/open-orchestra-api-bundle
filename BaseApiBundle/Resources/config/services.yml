@@ -4,6 +4,7 @@ parameters:
     open_orchestra_api.subscriber.http_exception.class: OpenOrchestra\BaseApi\EventSubscriber\HttpExceptionSubscriber
     open_orchestra_api.context.group.class: OpenOrchestra\BaseApi\Context\GroupContext
     open_orchestra_api.subscriber.group_context.class: OpenOrchestra\BaseApi\EventSubscriber\GroupContextSubscriber
+    open_orchestra_api.manager.access_token.class: OpenOrchestra\BaseApi\Manager\AccessTokenManager
 
 services:
     open_orchestra_api.subscriber.serializer:
@@ -16,6 +17,8 @@ services:
             - { name: kernel.event_subscriber }
     open_orchestra_api.subscriber.http_exception:
         class: %open_orchestra_api.subscriber.http_exception.class%
+        arguments:
+            - %open_orchestra_api.controller.http_exception_controller%
         tags:
             - { name: kernel.event_subscriber }
     open_orchestra_api.context.group:
@@ -28,3 +31,10 @@ services:
             - @controller_resolver
         tags:
             - { name: kernel.event_subscriber }
+    open_orchestra_api.manager.access_token:
+        class: %open_orchestra_api.manager.access_token.class%
+        arguments:
+            - @open_orchestra_api.repository.access_token
+            - @doctrine.odm.mongodb.document_manager
+            - %open_orchestra_api.document.access_token.class%
+            - %open_orchestra_api.token.expiration_time%

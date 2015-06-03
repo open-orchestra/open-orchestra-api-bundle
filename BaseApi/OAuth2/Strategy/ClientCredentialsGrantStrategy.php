@@ -35,22 +35,19 @@ class ClientCredentialsGrantStrategy extends AbstractStrategy
         $client = $this->getClient($request);
 
         /** @var TokenInterface $accessToken */
-        $accessToken = $this->accessTokenRepository->findOneByClientWithoutUser($client);
+        $accessToken = $this->accessTokenManager->findOneByClientWithoutUser($client);
 
         if (is_null($accessToken) || $accessToken->isBlocked() || $accessToken->isExpired()) {
-            // Create/Validate AccessToken
-            $tokenClass = $this->tokenClass;
-            $accessToken = $tokenClass::create(null, $client);
+            $accessToken = $this->accessTokenManager->create(null, $client);
             if (!$accessToken->isValid($this->validator)) {
                 return Response::create($this->serializer->serialize($accessToken->getViolations(), 'json'), 200, array())->prepare($request);
             }
 
-            $this->accessTokenRepository->save($accessToken);
+            $this->accessTokenManager->save($accessToken);
         }
 
         $tokenFacade = new AccessTokenFacade();
         $tokenFacade->accessToken   = $accessToken->getCode();
-        $tokenFacade->expiresIn     = $accessToken->getExpiredAt();
         $tokenFacade->expiresAt     = $accessToken->getExpiredAt();
 
         return Response::create($this->serializer->serialize($tokenFacade, 'json'), 200, array('Content-Type' => 'application/json'))->prepare($request);

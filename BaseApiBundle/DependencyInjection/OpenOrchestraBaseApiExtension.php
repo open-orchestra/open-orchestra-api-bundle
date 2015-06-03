@@ -41,6 +41,9 @@ class OpenOrchestraBaseApiExtension extends Extension
             }
         }
 
+        $container->setParameter('open_orchestra_api.controller.http_exception_controller', $config['http_exception_controller']);
+        $container->setParameter('open_orchestra_api.token.expiration_time', $config['token_expiration_time']);
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
         $loader->load('transformer.yml');

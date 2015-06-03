@@ -44,9 +44,21 @@ abstract class AbstractSubscriber
     /**
      * @param KernelEvent $event
      *
+     * @deprecated use isEventEligible, will be removed in 0.2.7
+     *
      * @return bool
      */
     protected function eventElligible(KernelEvent $event)
+    {
+        return $this->isEventEligible($event);
+    }
+
+    /**
+     * @param KernelEvent $event
+     *
+     * @return bool
+     */
+    protected function isEventEligible(KernelEvent $event)
     {
         return $event->isMasterRequest();
     }

@@ -6,6 +6,7 @@ use OpenOrchestra\BaseApi\Exceptions\HttpException\BadClientCredentialsHttpExcep
 use OpenOrchestra\BaseApi\Exceptions\HttpException\ClientBlockedHttpException;
 use OpenOrchestra\BaseApi\Exceptions\HttpException\ClientNonTrustedHttpException;
 use JMS\Serializer\Serializer;
+use OpenOrchestra\BaseApi\Manager\AccessTokenManager;
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
 use OpenOrchestra\BaseApiBundle\Repository\AccessTokenRepository;
 use OpenOrchestra\BaseApiBundle\Repository\ApiClientRepository;
@@ -17,34 +18,26 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  */
 abstract class AbstractStrategy implements StrategyInterface
 {
-    protected $accessTokenRepository;
     protected $apiClientRepository;
-    protected $tokenExpiration;
-    protected $tokenClass;
+    protected $accessTokenManager;
     protected $serializer;
     protected $validator;
 
     /**
-     * @param ApiClientRepository   $apiClientRepository
-     * @param AccessTokenRepository $accessTokenRepository
-     * @param Serializer            $serializer
-     * @param ValidatorInterface    $validator
-     * @param string                $tokenExpiration
-     * @param string                $tokenClass
+     * @param ApiClientRepository $apiClientRepository
+     * @param Serializer          $serializer
+     * @param ValidatorInterface  $validator
+     * @param AccessTokenManager  $accessTokenManager
      */
     public function __construct(
         ApiClientRepository $apiClientRepository,
-        AccessTokenRepository $accessTokenRepository,
         Serializer $serializer,
         ValidatorInterface $validator,
-        $tokenExpiration,
-        $tokenClass
+        AccessTokenManager $accessTokenManager
     )
     {
         $this->apiClientRepository = $apiClientRepository;
-        $this->accessTokenRepository = $accessTokenRepository;
-        $this->tokenExpiration = $tokenExpiration;
-        $this->tokenClass = $tokenClass;
+        $this->accessTokenManager = $accessTokenManager;
         $this->serializer = $serializer;
         $this->validator = $validator;
     }
