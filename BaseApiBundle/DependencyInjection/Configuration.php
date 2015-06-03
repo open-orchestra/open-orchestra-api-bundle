@@ -24,6 +24,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode->children()
             ->scalarNode('factory_service')->defaultNull()->end()
+            ->scalarNode('http_exception_controller')->defaultValue('OpenOrchestra\BaseApiBundle\Controller\ExceptionController::showAction')->end()
             ->arrayNode('document')
                 ->addDefaultsIfNotSet()
                 ->children()

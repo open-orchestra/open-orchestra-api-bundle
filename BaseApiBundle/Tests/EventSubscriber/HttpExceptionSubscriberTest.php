@@ -41,7 +41,7 @@ class HttpExceptionSubscriberTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->event)->getRequest()->thenReturn($this->request);
         Phake::when($this->event)->getKernel()->thenReturn($this->kernel);
 
-        $this->subscriber = new HttpExceptionSubscriber();
+        $this->subscriber = new HttpExceptionSubscriber('OpenOrchestra\BaseApiBundle\Controller\ExceptionController::showAction');
     }
 
     /**

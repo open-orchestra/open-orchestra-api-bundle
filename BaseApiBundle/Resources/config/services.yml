@@ -16,6 +16,8 @@ services:
             - { name: kernel.event_subscriber }
     open_orchestra_api.subscriber.http_exception:
         class: %open_orchestra_api.subscriber.http_exception.class%
+        arguments:
+            - %open_orchestra_api.controller.http_exception_controller%
         tags:
             - { name: kernel.event_subscriber }
     open_orchestra_api.context.group:

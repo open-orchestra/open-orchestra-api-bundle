@@ -13,6 +13,16 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class HttpExceptionSubscriber implements EventSubscriberInterface
 {
+    protected $controller;
+
+    /**
+     * @param string $controller
+     */
+    public function __construct($controller)
+    {
+        $this->controller = $controller;
+    }
+
     /**
      * @param GetResponseForExceptionEvent $event
      */
@@ -24,7 +34,7 @@ class HttpExceptionSubscriber implements EventSubscriberInterface
 
         $request = $event->getRequest();
         $attributes = array(
-            '_controller' => 'OpenOrchestra\BaseApiBundle\Controller\ExceptionController::showAction',
+            '_controller' => $this->controller,
             'exception' => $exception,
             'format' => $request->getRequestFormat('json'),
         );
