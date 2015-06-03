@@ -12,7 +12,7 @@ trait Blockable
      *
      * @ODM\Field(type="boolean")
      */
-    protected $blocked;
+    protected $blocked = false;
 
     /**
      * @return boolean

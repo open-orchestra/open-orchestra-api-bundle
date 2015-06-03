@@ -34,7 +34,8 @@ class OpenOrchestraBaseApiExtension extends Extension
                 $container->setParameter('open_orchestra_api.document.' . $class . '.class', $content['class']);
                 if (array_key_exists('repository', $content)) {
                     $container->register('open_orchestra_api.repository.' . $class, $content['repository'])
-                        ->setFactory($factoryService . '::getRepository')
+                        ->setFactoryService($factoryService)
+                        ->setFactoryMethod('getRepository')
                         ->addArgument($content['class']);
                 }
             }
