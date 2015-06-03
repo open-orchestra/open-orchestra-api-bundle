@@ -36,7 +36,7 @@ class SerializerSubscriber extends AbstractSubscriber implements EventSubscriber
      */
     public function onKernelViewSerialize(GetResponseForControllerResultEvent $event)
     {
-        if (!$this->eventElligible($event)) {
+        if (!$this->isEventEligible($event)) {
             return;
         }
 

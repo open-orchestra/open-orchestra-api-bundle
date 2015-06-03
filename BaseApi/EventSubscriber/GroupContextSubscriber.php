@@ -32,7 +32,7 @@ class GroupContextSubscriber extends AbstractSubscriber implements EventSubscrib
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (!$this->eventElligible($event)) {
+        if (!$this->isEventEligible($event)) {
             return;
         }
 
