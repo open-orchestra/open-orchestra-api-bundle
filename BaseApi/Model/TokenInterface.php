@@ -41,12 +41,12 @@ interface TokenInterface extends BlockableInterface, ExpireableInterface
     public function setUser(UserInterface $user);
 
     /**
-     * @param UserInterface      $user
      * @param ApiClientInterface $client
+     * @param UserInterface      $user
      *
      * @return TokenInterface
      */
-    public static function create(UserInterface $user = null, ApiClientInterface $client);
+    public static function create(ApiClientInterface $client, UserInterface $user = null);
 
     /**
      * @param ValidatorInterface $validator

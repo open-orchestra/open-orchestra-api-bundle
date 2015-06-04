@@ -130,12 +130,12 @@ class AccessToken implements TokenInterface
     }
 
     /**
-     * @param UserInterface      $user
      * @param ApiClientInterface $client
+     * @param UserInterface      $user
      *
      * @return TokenInterface
      */
-    public static function create(UserInterface $user = null, ApiClientInterface $client)
+    public static function create(ApiClientInterface $client, UserInterface $user = null)
     {
         $accessToken = new self();
         $accessToken->setUser($user);

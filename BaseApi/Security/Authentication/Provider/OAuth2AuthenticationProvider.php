@@ -7,6 +7,7 @@ use OpenOrchestra\BaseApi\Exceptions\HttpException\TokenExpiredHttpException;
 use OpenOrchestra\BaseApi\Exceptions\HttpException\UserNotFoundHttpException;
 use OpenOrchestra\BaseApi\Manager\AccessTokenManager;
 use OpenOrchestra\BaseApi\Security\Authentication\Token\OAuth2Token;
+use OpenOrchestra\BaseApiBundle\Repository\AccessTokenRepository;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
@@ -16,12 +17,15 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 class OAuth2AuthenticationProvider implements AuthenticationProviderInterface
 {
     protected $accessTokenManager;
+    protected $accessTokenRepository;
 
     /**
-     * @param AccessTokenManager $accessTokenManager
+     * @param AccessTokenManager    $accessTokenManager
+     * @param AccessTokenRepository $accessTokenRepository
      */
-    public function __construct(AccessTokenManager $accessTokenManager)
+    public function __construct(AccessTokenManager $accessTokenManager, AccessTokenRepository $accessTokenRepository)
     {
+        $this->accessTokenRepository = $accessTokenRepository;
         $this->accessTokenManager = $accessTokenManager;
     }
 
@@ -38,7 +42,7 @@ class OAuth2AuthenticationProvider implements AuthenticationProviderInterface
     public function authenticate(TokenInterface $token)
     {
         $accessToken = $token->getAccessToken();
-        $accessTokenEntity = $this->accessTokenManager->findOneByCode($accessToken);
+        $accessTokenEntity = $this->accessTokenRepository->findOneByCode($accessToken);
         if (is_null($accessTokenEntity) || $accessTokenEntity->isBlocked()) {
             throw new TokenBlockedHttpException();
         }
