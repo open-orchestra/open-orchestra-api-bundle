@@ -57,9 +57,9 @@ class ApiClientRepository extends DocumentRepository
     }
 
     /**
-     * @param array|null   $columns
-     * @param array|null   $descriptionEntity
-     * @param array|null   $search
+     * @param array|null $columns
+     * @param array|null $descriptionEntity
+     * @param array|null $search
      *
      * @return int
      */
@@ -117,6 +117,7 @@ class ApiClientRepository extends DocumentRepository
                 }
             }
         }
+
         return $qb;
     }
 
