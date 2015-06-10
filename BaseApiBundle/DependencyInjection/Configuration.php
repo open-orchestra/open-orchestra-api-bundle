@@ -20,7 +20,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('open_orchestra_model');
+        $rootNode = $treeBuilder->root('open_orchestra_base_api');
 
         $rootNode->children()
             ->scalarNode('factory_service')->defaultNull()->end()
