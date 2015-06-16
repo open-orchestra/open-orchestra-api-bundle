@@ -23,7 +23,14 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('open_orchestra_base_api');
 
         $rootNode->children()
-            ->scalarNode('factory_service')->defaultNull()->end()
+            ->arrayNode('factory')
+                ->beforeNormalization()
+                    ->ifTrue(function($v) { return $v === null; })
+                    ->then(function($v) { return array(); })
+                ->end()
+                ->prototype('scalar')->end()
+                ->defaultValue(array())
+            ->end()
             ->scalarNode('http_exception_controller')->defaultValue('OpenOrchestra\BaseApiBundle\Controller\ExceptionController::showAction')->end()
             ->scalarNode('token_expiration_time')->defaultValue('+1month')->end()
             ->arrayNode('document')
