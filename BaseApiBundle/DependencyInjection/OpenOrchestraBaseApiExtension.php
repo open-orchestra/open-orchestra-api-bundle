@@ -24,7 +24,12 @@ class OpenOrchestraBaseApiExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $factoryService = $config['factory_service'];
+        $factoryService = null;
+        $factory = $config['factory'];
+        if (count($factory) > 0) {
+            $factoryService = $factory[0];
+        }
+
         if (is_null($factoryService) && class_exists('Doctrine\ODM\MongoDB\DocumentManager')) {
             $factoryService = 'doctrine.odm.mongodb.document_manager';
         } elseif (is_null($factoryService) && class_exists('Doctrine\ORM\EntityManager')) {
