@@ -22,3 +22,4 @@ script: ./bin/phpunit
 
 after_script:
   - ./bin/ocular code-coverage:upload --access-token="0ab85d09ea536dc6a7f03316b495cc078d8bee02c7c74974bbfd1fe280425a16" --format=php-clover build/logs/clover.xml
+  - CODECLIMATE_REPO_TOKEN=e21a828679a86ff0c9889b37a8779050005cd0ae499f787785280214c2fbf30b ./vendor/bin/test-reporter
