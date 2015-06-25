@@ -48,9 +48,9 @@ abstract class AbstractTransformer implements TransformerInterface
      *
      * @return string
      */
-    protected function generateRoute($name, $parameter = array())
+    protected function generateRoute($name, $parameter = array(), $referenceType = UrlGeneratorInterface::ABSOLUTE_URL)
     {
-        return $this->getRouter()->generate($name, $parameter, UrlGeneratorInterface::ABSOLUTE_URL);
+        return $this->getRouter()->generate($name, $parameter, $referenceType);
     }
 
     /**
