@@ -4,7 +4,7 @@ namespace OpenOrchestra\BaseApiBundle\Document;
 
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ApiClient
@@ -34,11 +34,13 @@ class ApiClient implements ApiClientInterface
     protected $secret;
 
     /**
+     * @Assert\NotBlank()
      * @ODM\Field(type="string")
      */
     protected $name;
 
     /**
+     * @Assert\Type(type="bool")
      * @ODM\Field(type="boolean")
      */
     protected $trusted;
