@@ -1,0 +1,10 @@
+OpenOrchestra\BaseApiBundle\Document\ApiClient:
+    properties:
+        name:
+            - NotBlank: ~
+        trusted :
+            - Type:
+                type: bool
+        blocked :
+            - Type:
+                type: bool

@@ -5,7 +5,6 @@ namespace OpenOrchestra\BaseApiBundle\Document;
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
-
 /**
  * Class ApiClient
  *
