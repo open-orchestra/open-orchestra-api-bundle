@@ -38,6 +38,7 @@ abstract class AbstractSubscriber
             $controller[1]),
             $annotationClassName
         );
+
         return $annot;
     }
 
