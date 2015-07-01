@@ -31,7 +31,7 @@ trait Blockable
     }
 
     /**
-     * {@inheritdoc}
+     * Block a client
      */
     public function block()
     {
@@ -39,7 +39,7 @@ trait Blockable
     }
 
     /**
-     * {@inheritdoc}
+     * Unblock a client
      */
     public function unblock()
     {

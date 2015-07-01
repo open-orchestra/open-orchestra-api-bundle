@@ -2,7 +2,6 @@
 
 namespace OpenOrchestra\BaseApi\Exceptions\HttpException;
 
-
 /**
  * Class BadUserCredentialsHttpException
  */

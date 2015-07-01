@@ -57,9 +57,11 @@ class SerializerSubscriber extends AbstractSubscriber implements EventSubscriber
     }
 
     /**
-     * @{inherit}
+     * Returns an array of event names this subscriber wants to listen to.
      *
-     * @return array
+     * @return array The event names to listen to
+     *
+     * @api
      */
     public static function getSubscribedEvents()
     {

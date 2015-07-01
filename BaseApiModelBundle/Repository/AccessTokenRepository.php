@@ -39,48 +39,4 @@ class AccessTokenRepository extends DocumentRepository implements AccessTokenRep
     {
         return $this->findOneBy(array('code' => $token));
     }
-
-    /**
-     * @param TokenInterface $accessToken
-     *
-     * @deprecated use the AccessTokenManager instead, will be removed in 0.2.7
-     */
-    public function save(TokenInterface $accessToken)
-    {
-        $this->revokeNonUsedAccessToken($accessToken->getClient(), $accessToken->getUser());
-
-        $dm = $this->getDocumentManager();
-        $dm->persist($accessToken);
-        $dm->flush($accessToken);
-    }
-
-    /**
-     * @param ApiClientInterface $client
-     * @param UserInterface      $user
-     *
-     * @deprecated use the AccessTokenManager instead, will be removed in 0.2.7
-     */
-    public function revokeNonUsedAccessToken(ApiClientInterface $client, UserInterface $user = null)
-    {
-        $searchParams = array(
-            'client'  => $client->getId(),
-            'blocked' => false
-        );
-        $searchParams['user'] = null;
-        $searchParams['customer'] = null;
-        if ($user instanceof UserInterface) {
-            $searchParams['user'] = $user->getId();
-        }
-
-        $accessTokens = $this->findBy($searchParams);
-
-        $dm = $this->getDocumentManager();
-
-        /** @var TokenInterface $accessToken */
-        foreach ($accessTokens as $accessToken) {
-            $accessToken->block();
-            $dm->persist($accessToken);
-        }
-        $dm->flush();
-    }
 }
