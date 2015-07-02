@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\Document;
+namespace OpenOrchestra\BaseApiModelBundle\Document;
 
 /**
  * Trait Blockable

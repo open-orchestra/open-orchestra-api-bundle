@@ -1,8 +1,9 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\Repository;
+namespace OpenOrchestra\BaseApiModelBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use OpenOrchestra\BaseApi\Repository\AccessTokenRepositoryInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
 use OpenOrchestra\BaseApi\Model\TokenInterface;
@@ -10,7 +11,7 @@ use OpenOrchestra\BaseApi\Model\TokenInterface;
 /**
  * Class AccessTokenRepository
  */
-class AccessTokenRepository extends DocumentRepository
+class AccessTokenRepository extends DocumentRepository implements AccessTokenRepositoryInterface
 {
     /**
      * @param ApiClientInterface $client

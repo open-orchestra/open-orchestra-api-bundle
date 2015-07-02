@@ -1,14 +1,15 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\Repository;
+namespace OpenOrchestra\BaseApiModelBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
+use OpenOrchestra\BaseApi\Repository\ApiClientRepositoryInterface;
 
 /**
  * Class ApiClientRepository
  */
-class ApiClientRepository extends DocumentRepository
+class ApiClientRepository extends DocumentRepository implements ApiClientRepositoryInterface
 {
     /**
      * @param string $key
@@ -85,7 +86,7 @@ class ApiClientRepository extends DocumentRepository
             $filter = $value;
         } else {
             $value = preg_quote($value);
-            $filter = new \MongoRegex('/.*'.$value.'.*/i');
+            $filter = new \MongoRegex('/.*' . $value . '.*/i');
         }
 
         return $filter;
