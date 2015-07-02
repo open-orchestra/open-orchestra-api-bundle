@@ -86,7 +86,7 @@ class ApiClientRepository extends DocumentRepository implements ApiClientReposit
             $filter = $value;
         } else {
             $value = preg_quote($value);
-            $filter = new \MongoRegex('/.*'.$value.'.*/i');
+            $filter = new \MongoRegex('/.*' . $value . '.*/i');
         }
 
         return $filter;
