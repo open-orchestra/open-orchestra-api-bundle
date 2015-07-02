@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\Document;
+namespace OpenOrchestra\BaseApiModelBundle\Document;
 
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
 use OpenOrchestra\BaseApi\Model\TokenInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\Validator\ValidatorInterface;
  *
  * @ODM\Document(
  *   collection="access_token",
- *   repositoryClass="OpenOrchestra\BaseApiBundle\Repository\AccessTokenRepository"
+ *   repositoryClass="OpenOrchestra\BaseApiModelBundle\Repository\AccessTokenRepository"
  * )
  */
 class AccessToken implements TokenInterface

@@ -8,8 +8,8 @@ use OpenOrchestra\BaseApi\Exceptions\HttpException\ClientNonTrustedHttpException
 use JMS\Serializer\Serializer;
 use OpenOrchestra\BaseApi\Manager\AccessTokenManager;
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
-use OpenOrchestra\BaseApiBundle\Repository\AccessTokenRepository;
-use OpenOrchestra\BaseApiBundle\Repository\ApiClientRepository;
+use OpenOrchestra\BaseApi\Repository\AccessTokenRepositoryInterface;
+use OpenOrchestra\BaseApi\Repository\ApiClientRepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -25,18 +25,18 @@ abstract class AbstractStrategy implements StrategyInterface
     protected $validator;
 
     /**
-     * @param ApiClientRepository   $apiClientRepository
-     * @param Serializer            $serializer
-     * @param ValidatorInterface    $validator
-     * @param AccessTokenManager    $accessTokenManager
-     * @param AccessTokenRepository $accessTokenRepository
+     * @param ApiClientRepositoryInterface   $apiClientRepository
+     * @param Serializer                     $serializer
+     * @param ValidatorInterface             $validator
+     * @param AccessTokenManager             $accessTokenManager
+     * @param AccessTokenRepositoryInterface $accessTokenRepository
      */
     public function __construct(
-        ApiClientRepository $apiClientRepository,
+        ApiClientRepositoryInterface $apiClientRepository,
         Serializer $serializer,
         ValidatorInterface $validator,
         AccessTokenManager $accessTokenManager,
-        AccessTokenRepository $accessTokenRepository
+        AccessTokenRepositoryInterface $accessTokenRepository
     )
     {
         $this->accessTokenRepository = $accessTokenRepository;

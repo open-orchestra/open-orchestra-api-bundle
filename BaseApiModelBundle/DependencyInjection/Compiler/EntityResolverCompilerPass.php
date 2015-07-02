@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\DependencyInjection\Compiler;
+namespace OpenOrchestra\BaseApiModelBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -21,9 +21,10 @@ class EntityResolverCompilerPass implements  CompilerPassInterface
             foreach ($container->getResources() as $resource) {
                 $resourcePath = $resource->getResource();
                 if (is_string($resourcePath)) {
-                    if (strpos($resourcePath, 'base-api')
+                    if (strpos($resourcePath, 'BaseApiModelBundle')
                         && strpos($resourcePath, 'config')
                         && strpos($resourcePath, 'yml') === false
+                        && strpos($resourcePath, 'validation') === false
                     ) {
                         break;
                     }

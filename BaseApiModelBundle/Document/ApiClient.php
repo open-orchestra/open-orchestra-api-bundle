@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\Document;
+namespace OpenOrchestra\BaseApiModelBundle\Document;
 
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
@@ -10,7 +10,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  *
  * @ODM\Document(
  *   collection="api_client",
- *   repositoryClass="OpenOrchestra\BaseApiBundle\Repository\ApiClientRepository"
+ *   repositoryClass="OpenOrchestra\BaseApiModelBundle\Repository\ApiClientRepository"
  * )
  */
 class ApiClient implements ApiClientInterface

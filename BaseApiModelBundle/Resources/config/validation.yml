@@ -1,4 +1,4 @@
-OpenOrchestra\BaseApiBundle\Document\ApiClient:
+OpenOrchestra\BaseApiModelBundle\Document\ApiClient:
     properties:
         name:
             - NotBlank: ~

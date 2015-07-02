@@ -5,7 +5,7 @@ namespace OpenOrchestra\BaseApi\Manager;
 use Doctrine\Common\Persistence\ObjectManager;
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
 use OpenOrchestra\BaseApi\Model\TokenInterface;
-use OpenOrchestra\BaseApiBundle\Repository\AccessTokenRepository;
+use OpenOrchestra\BaseApi\Repository\AccessTokenRepositoryInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -19,12 +19,12 @@ class AccessTokenManager
     protected $tokenClass;
 
     /**
-     * @param AccessTokenRepository $accessTokenRepository
-     * @param ObjectManager         $objectManager
-     * @param string                $tokenClass
-     * @param string                $tokenExpiration
+     * @param AccessTokenRepositoryInterface $accessTokenRepository
+     * @param ObjectManager                  $objectManager
+     * @param string                         $tokenClass
+     * @param string                         $tokenExpiration
      */
-    public function __construct(AccessTokenRepository $accessTokenRepository, ObjectManager $objectManager, $tokenClass, $tokenExpiration)
+    public function __construct(AccessTokenRepositoryInterface $accessTokenRepository, ObjectManager $objectManager, $tokenClass, $tokenExpiration)
     {
         $this->accessTokenRepository = $accessTokenRepository;
         $this->tokenExpiration = $tokenExpiration;

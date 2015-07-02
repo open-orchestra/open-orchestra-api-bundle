@@ -7,7 +7,7 @@ use OpenOrchestra\BaseApi\Exceptions\HttpException\TokenExpiredHttpException;
 use OpenOrchestra\BaseApi\Exceptions\HttpException\UserNotFoundHttpException;
 use OpenOrchestra\BaseApi\Manager\AccessTokenManager;
 use OpenOrchestra\BaseApi\Security\Authentication\Token\OAuth2Token;
-use OpenOrchestra\BaseApiBundle\Repository\AccessTokenRepository;
+use OpenOrchestra\BaseApi\Repository\AccessTokenRepositoryInterface;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
@@ -20,10 +20,10 @@ class OAuth2AuthenticationProvider implements AuthenticationProviderInterface
     protected $accessTokenRepository;
 
     /**
-     * @param AccessTokenManager    $accessTokenManager
-     * @param AccessTokenRepository $accessTokenRepository
+     * @param AccessTokenManager             $accessTokenManager
+     * @param AccessTokenRepositoryInterface $accessTokenRepository
      */
-    public function __construct(AccessTokenManager $accessTokenManager, AccessTokenRepository $accessTokenRepository)
+    public function __construct(AccessTokenManager $accessTokenManager, AccessTokenRepositoryInterface $accessTokenRepository)
     {
         $this->accessTokenRepository = $accessTokenRepository;
         $this->accessTokenManager = $accessTokenManager;
