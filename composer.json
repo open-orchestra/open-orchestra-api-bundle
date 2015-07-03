@@ -11,7 +11,9 @@
     "minimum-stability": "dev",
     "require": {
         "jms/serializer-bundle" : "0.13.0",
-        "open-orchestra/open-orchestra-base-bundle": "*"
+        "open-orchestra/open-orchestra-base-bundle": "*",
+        "open-orchestra/open-orchestra-libs": "*",
+        "solution/mongo-odm-aggregation-bundle": "*"
     },
     "require-dev": {
         "phpunit/phpunit" : "4.7.2",
