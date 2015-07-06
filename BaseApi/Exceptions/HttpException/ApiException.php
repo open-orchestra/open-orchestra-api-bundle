@@ -16,10 +16,10 @@ abstract class ApiException extends BaseApiAxception implements HttpExceptionInt
     protected $humanMessage;
 
     /**
-     * @param string      $statusCode
-     * @param int         $errorCode
-     * @param string      $developerMessage
-     * @param string      $humanMessage
+     * @param string $statusCode
+     * @param int    $errorCode
+     * @param string $developerMessage
+     * @param string $humanMessage
      */
     public function __construct($statusCode, $errorCode, $developerMessage, $humanMessage)
     {
