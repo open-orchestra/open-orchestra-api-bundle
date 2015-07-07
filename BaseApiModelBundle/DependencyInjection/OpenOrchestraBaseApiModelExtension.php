@@ -40,6 +40,9 @@ class OpenOrchestraBaseApiModelExtension extends Extension
                 if (array_key_exists('repository', $content)) {
                     $definition = new Definition($content['repository'], array($content['class']));
                     $definition->setFactory(array(new Reference($factoryService), 'getRepository'));
+                    $definition->addMethodCall('setAggregationQueryBuilder', array(
+                        new Reference('doctrine_mongodb.odm.default_aggregation_query')
+                    ));
                     $container->setDefinition('open_orchestra_api.repository.' . $class, $definition);
                 }
             }

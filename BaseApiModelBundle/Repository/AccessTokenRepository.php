@@ -2,15 +2,15 @@
 
 namespace OpenOrchestra\BaseApiModelBundle\Repository;
 
-use Doctrine\ODM\MongoDB\DocumentRepository;
 use OpenOrchestra\BaseApi\Repository\AccessTokenRepositoryInterface;
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
 use OpenOrchestra\BaseApi\Model\TokenInterface;
+use OpenOrchestra\Repository\AbstractAggregateRepository;
 
 /**
  * Class AccessTokenRepository
  */
-class AccessTokenRepository extends DocumentRepository implements AccessTokenRepositoryInterface
+class AccessTokenRepository extends AbstractAggregateRepository implements AccessTokenRepositoryInterface
 {
     /**
      * @param ApiClientInterface $client
