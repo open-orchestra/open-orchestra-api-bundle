@@ -2,20 +2,19 @@
 
 namespace OpenOrchestra\BaseApiModelBundle\Repository;
 
-use Doctrine\ODM\MongoDB\DocumentRepository;
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
 use OpenOrchestra\BaseApi\Repository\ApiClientRepositoryInterface;
-use OpenOrchestra\Pagination\MongoTrait\FilterTrait;
 use OpenOrchestra\Pagination\MongoTrait\PaginationTrait;
+use OpenOrchestra\Repository\AbstractAggregateRepository;
 
 
 /**
  * Class ApiClientRepository
  */
-class ApiClientRepository extends DocumentRepository implements ApiClientRepositoryInterface
+class ApiClientRepository extends AbstractAggregateRepository implements ApiClientRepositoryInterface
 {
-    use FilterTrait;
     use PaginationTrait;
+
     /**
      * @param string $key
      * @param string $secret
