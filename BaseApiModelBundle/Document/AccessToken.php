@@ -6,7 +6,7 @@ use OpenOrchestra\BaseApi\Model\ApiClientInterface;
 use OpenOrchestra\BaseApi\Model\TokenInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class AccessToken
@@ -151,8 +151,8 @@ class AccessToken implements TokenInterface
      */
     public function isValid(ValidatorInterface $validator)
     {
-        $this->violations = $validator->validate($this);
+        $violations = $validator->validate($this);
 
-        return 0 === count($this->violations);
+        return 0 === count($violations);
     }
 }

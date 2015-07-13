@@ -2,7 +2,6 @@
 
 namespace OpenOrchestra\BaseApiModelBundle\Document;
 
-
 /**
  * Trait Expireable
  */
