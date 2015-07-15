@@ -40,7 +40,7 @@ class AccessTokenManager
         $this->revokeNonUsedAccessToken($accessToken->getClient(), $accessToken->getUser());
 
         $this->objectManager->persist($accessToken);
-        $this->objectManager->flush($accessToken);
+        $this->objectManager->flush();
     }
 
     /**

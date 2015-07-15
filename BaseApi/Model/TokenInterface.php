@@ -3,7 +3,7 @@
 namespace OpenOrchestra\BaseApi\Model;
 
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class TokenInterface
