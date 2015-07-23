@@ -9,19 +9,10 @@ use Phake;
  */
 abstract class TransformerTestCase extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var \Phake_IMock
-     */
     protected $transformerManager;
 
-    /**
-     * @var \Phake_IMock
-     */
     protected $router;
 
-    /**
-     * @var \Phake_IMock
-     */
     protected $groupContext;
 
     /**
@@ -34,15 +25,15 @@ abstract class TransformerTestCase extends \PHPUnit_Framework_TestCase
         $this->transformerManager = Phake::mock('OpenOrchestra\BaseApi\Transformer\TransformerManager');
 
         Phake::when($this->router)
-            ->generate
-            ->thenReturn('route');
+             ->generate(Phake::anyParameters())
+             ->thenReturn('route');
 
         Phake::when($this->transformerManager)
-            ->getRouter()
-            ->thenReturn($this->router);
+             ->getRouter()
+             ->thenReturn($this->router);
 
         Phake::when($this->transformerManager)
-            ->getGroupContext()
-            ->thenReturn($this->groupContext);
+             ->getGroupContext()
+             ->thenReturn($this->groupContext);
     }
 }
