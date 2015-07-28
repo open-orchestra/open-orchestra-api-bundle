@@ -49,11 +49,14 @@ class SerializerSubscriber extends AbstractSubscriber implements EventSubscriber
         $format = $event->getRequest()->get('_format', 'json');
         $event->setResponse(
             new Response(
-                $this->serializer->serialize(
+                $this->generateResponseContent(
                     $event->getControllerResult(),
-                    $format),
+                    $format
+                ),
                 200,
-                array('content-type' => $this->generateContentType($format))));
+                array('content-type' => $this->generateContentType($format))
+            )
+        );
     }
 
     /**
@@ -87,5 +90,20 @@ class SerializerSubscriber extends AbstractSubscriber implements EventSubscriber
             default :
                 return 'text/html';
         }
+    }
+
+    /**
+     * Generate the content of the response
+     *
+     * @param mixed  $controllerResult
+     * @param string $format
+     *
+     * @return string
+     */
+    protected function generateResponseContent($controllerResult, $format)
+    {
+        return $this->serializer->serialize(
+            $controllerResult,
+            $format);
     }
 }
