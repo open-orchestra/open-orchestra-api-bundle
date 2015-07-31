@@ -47,5 +47,7 @@ class OpenOrchestraBaseApiModelExtension extends Extension
                 }
             }
         }
+
+        $container->setAlias('document_manager', $factoryService);
     }
 }

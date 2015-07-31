@@ -59,7 +59,7 @@ abstract class BaseController extends Controller
         $mixed = $this->get('open_orchestra_api.transformer_manager')->get($typeName)->reverseTransform($facade, $mixed);
 
         if ($this->isValid($mixed)) {
-            $em = $this->get('doctrine.odm.mongodb.document_manager');
+            $em = $this->get('document_manager');
             $em->persist($mixed);
             $em->flush();
 

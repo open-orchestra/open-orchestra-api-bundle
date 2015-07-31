@@ -21,6 +21,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('open_orchestra_base_api_model');
 
         $rootNode->children()
+            ->scalarNode('document_manager')->defaultValue('doctrine.odm.mongodb.document_manager')->end()
             ->arrayNode('factory')
                 ->beforeNormalization()
                     ->ifTrue(function($v) { return $v === null; })

@@ -35,6 +35,6 @@ services:
         class: %open_orchestra_api.manager.access_token.class%
         arguments:
             - @open_orchestra_api.repository.access_token
-            - @doctrine.odm.mongodb.document_manager
+            - @document_manager
             - %open_orchestra_api.document.access_token.class%
             - %open_orchestra_api.token.expiration_time%
