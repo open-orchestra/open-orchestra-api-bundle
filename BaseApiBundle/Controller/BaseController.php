@@ -16,7 +16,7 @@ abstract class BaseController extends Controller
     protected $violations;
 
     /**
-     * @param mixed $mixed
+     * @param mixed      $mixed
      * @param array|null $validationGroups
      *
      * @return bool
