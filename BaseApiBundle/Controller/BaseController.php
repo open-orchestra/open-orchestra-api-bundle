@@ -16,12 +16,12 @@ abstract class BaseController extends Controller
     protected $violations;
 
     /**
-     * @param mixed $mixed
-     * @param array $validationGroups
+     * @param mixed      $mixed
+     * @param array|null $validationGroups
      *
      * @return bool
      */
-    protected function isValid($mixed, array $validationGroups = array())
+    protected function isValid($mixed, $validationGroups = null)
     {
         $this->violations = $this->get('validator')->validate($mixed, $validationGroups);
 
