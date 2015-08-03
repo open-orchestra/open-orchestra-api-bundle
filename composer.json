@@ -21,12 +21,14 @@
         "codeclimate/php-test-reporter": "dev-master",
         "phake/phake": "2.1.0"
     },
+    "suggest" : {
+        "open-orchestra/open-orchestra-mongo-model-bundle" : "*"
+    },
     "config" : {
         "bin-dir" : "bin"
     },
     "autoload": {
         "psr-0": {
-            "OpenOrchestra\\BaseApiModelBundle": "",
             "OpenOrchestra\\BaseApiBundle": "",
             "OpenOrchestra\\BaseApi": ""
         }
