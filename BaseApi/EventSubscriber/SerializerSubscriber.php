@@ -4,6 +4,7 @@ namespace OpenOrchestra\BaseApi\EventSubscriber;
 
 use Doctrine\Common\Annotations\Reader;
 use JMS\Serializer\SerializerInterface;
+use OpenOrchestra\BaseApi\Manager\ContentTypeGeneratorTrait;
 use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class SerializerSubscriber extends AbstractSubscriber implements EventSubscriberInterface
 {
+    use ContentTypeGeneratorTrait;
     protected $serializer;
 
     /**
@@ -71,25 +73,6 @@ class SerializerSubscriber extends AbstractSubscriber implements EventSubscriber
         return array(
             KernelEvents::VIEW => 'onKernelViewSerialize',
         );
-    }
-
-    /**
-     * @param string $format
-     *
-     * @return string
-     */
-    protected function generateContentType($format)
-    {
-        switch ($format) {
-            case 'json':
-                return 'application/json';
-            case 'xml' :
-                return 'text/xml';
-            case 'yml':
-                return 'application/yaml';
-            default :
-                return 'text/html';
-        }
     }
 
     /**

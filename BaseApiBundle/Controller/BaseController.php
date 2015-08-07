@@ -3,6 +3,7 @@
 namespace OpenOrchestra\BaseApiBundle\Controller;
 
 use Doctrine\Common\Inflector\Inflector;
+use OpenOrchestra\BaseApi\Manager\ContentTypeGeneratorTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 abstract class BaseController extends Controller
 {
+    use ContentTypeGeneratorTrait;
     protected $violations;
 
     /**
@@ -49,10 +51,11 @@ abstract class BaseController extends Controller
     {
         $facadeName = Inflector::classify($type) . 'Facade';
         $typeName = Inflector::tableize($type);
+        $format = $request->get('_format', 'json');
         $facade = $this->get('jms_serializer')->deserialize(
             $request->getContent(),
             'OpenOrchestra\ApiBundle\Facade\\' . $facadeName,
-            $request->get('_format', 'json')
+            $format
         );
 
         $mixed = $this->get('open_orchestra_model.repository.' . $typeName)->find($id);
@@ -68,9 +71,10 @@ abstract class BaseController extends Controller
             return new Response('', 200);
         }
 
-        return new response(
-            $this->get('jms_serializer')->serialize($this->getViolations(), $request->get('_format', 'json')),
-            400
+        return new Response(
+            $this->get('jms_serializer')->serialize($this->getViolations(), $format),
+            400,
+            array('content-type' => $this->generateContentType($format))
         );
     }
 
