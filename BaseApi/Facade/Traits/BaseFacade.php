@@ -14,6 +14,7 @@ trait BaseFacade
 
     /**
      * @Serializer\XmlMap(inline=false, entry="link", keyAttribute="location")
+     * @Serializer\Type("array<string,string>")
      */
     protected $links = array();
 
