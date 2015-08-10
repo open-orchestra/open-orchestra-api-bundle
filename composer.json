@@ -13,8 +13,7 @@
         "jms/serializer-bundle" : "1.0.0",
         "symfony/validator": "*",
         "open-orchestra/open-orchestra-base-bundle": "*",
-        "open-orchestra/open-orchestra-libs": "*",
-        "solution/mongo-odm-aggregation-bundle": "*"
+        "open-orchestra/open-orchestra-libs": "*"
     },
     "require-dev": {
         "phpunit/phpunit" : "4.7.2",
