@@ -19,12 +19,10 @@ class SerializerSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     protected $subscriber;
 
-    protected $event;
     protected $request;
     protected $resolver;
     protected $serializer;
     protected $annotationReader;
-    protected $controllerResult;
 
     /**
      * Set up the test
@@ -37,16 +35,6 @@ class SerializerSubscriberTest extends \PHPUnit_Framework_TestCase
 
         $this->request = Phake::mock('Symfony\Component\HttpFoundation\Request');
         Phake::when($this->request)->get('_route')->thenReturn('open_orchestra_api');
-
-        $this->controllerResult = array();
-
-        $kernel = Phake::mock('Symfony\Component\HttpKernel\HttpKernelInterface');
-        $this->event = new GetResponseForControllerResultEvent(
-            $kernel,
-            $this->request,
-            HttpKernelInterface::MASTER_REQUEST,
-            $this->controllerResult
-        );
 
         $this->subscriber = new SerializerSubscriber($this->serializer, $this->annotationReader, $this->resolver);
     }
@@ -72,21 +60,30 @@ class SerializerSubscriberTest extends \PHPUnit_Framework_TestCase
      * @param string $format
      * @param string $responseContentType
      *
+     * @param $classAnnotation
      * @dataProvider provideFormatAndResponseType
      */
-    public function testOnKernelViewSerialize($format, $responseContentType)
+    public function testOnKernelViewSerialize($format, $responseContentType, $classAnnotation, $controllerResult, $expectedStatusCode)
     {
         Phake::when($this->resolver)->getController(Phake::anyParameters())->thenReturn(array('\DateTime', 'add'));
-        Phake::when($this->annotationReader)->getMethodAnnotation(Phake::anyParameters())->thenReturn(true);
+        Phake::when($this->annotationReader)->getMethodAnnotation(Phake::anyParameters())->thenReturn(!$classAnnotation);
+        Phake::when($this->annotationReader)->getClassAnnotation(Phake::anyParameters())->thenReturn($classAnnotation);
         Phake::when($this->request)->get('_format', 'json')->thenReturn($format);
 
-        $this->subscriber->onKernelViewSerialize($this->event);
+        $event = new GetResponseForControllerResultEvent(
+            Phake::mock('Symfony\Component\HttpKernel\HttpKernelInterface'),
+            $this->request,
+            HttpKernelInterface::MASTER_REQUEST,
+            $controllerResult
+        );
+
+        $this->subscriber->onKernelViewSerialize($event);
 
         /** @var Response $response */
-        $response = $this->event->getResponse();
+        $response = $event->getResponse();
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        Phake::verify($this->serializer)->serialize($this->controllerResult, $format);
+        $this->assertEquals($expectedStatusCode, $response->getStatusCode());
+        Phake::verify($this->serializer)->serialize($controllerResult, $format);
         $this->assertSame($responseContentType, $response->headers->get('content-type'));
     }
 
@@ -95,10 +92,32 @@ class SerializerSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     public function provideFormatAndResponseType()
     {
+        $okCode = 200;
+        $okResponse = Phake::mock('OpenOrchestra\BaseApi\Facade\FacadeInterface');
+        $response = array();
+
+        $koCode = 400;
+        $koResponse = Phake::mock('Symfony\Component\Validator\ConstraintViolationListInterface');
+
         return array(
-            array('json', 'application/json'),
-            array('xml', 'text/xml'),
-            array('yml', 'application/yaml'),
+            array('json', 'application/json', false, $okResponse, $okCode),
+            array('xml', 'text/xml', false, $okResponse, $okCode),
+            array('yml', 'application/yaml', false, $okResponse, $okCode),
+            array('json', 'application/json', true, $okResponse, $okCode),
+            array('xml', 'text/xml', true, $okResponse, $okCode),
+            array('yml', 'application/yaml', true, $okResponse, $okCode),
+            array('json', 'application/json', false, $response, $okCode),
+            array('xml', 'text/xml', false, $response, $okCode),
+            array('yml', 'application/yaml', false, $response, $okCode),
+            array('json', 'application/json', true, $response, $okCode),
+            array('xml', 'text/xml', true, $response, $okCode),
+            array('yml', 'application/yaml', true, $response, $okCode),
+            array('json', 'application/json', false, $koResponse, $koCode),
+            array('xml', 'text/xml', false, $koResponse, $koCode),
+            array('yml', 'application/yaml', false, $koResponse, $koCode),
+            array('json', 'application/json', true, $koResponse, $koCode),
+            array('xml', 'text/xml', true, $koResponse, $koCode),
+            array('yml', 'application/yaml', true, $koResponse, $koCode),
         );
     }
 }

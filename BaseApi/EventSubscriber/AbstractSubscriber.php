@@ -39,6 +39,10 @@ abstract class AbstractSubscriber
             $annotationClassName
         );
 
+        if(!$annot) {
+            $annot = $this->annotationReader->getClassAnnotation($reflectionClass, $annotationClassName);
+        }
+
         return $annot;
     }
 
@@ -50,5 +54,24 @@ abstract class AbstractSubscriber
     protected function isEventEligible(KernelEvent $event)
     {
         return $event->isMasterRequest();
+    }
+
+    /**
+     * @param string $format
+     *
+     * @return string
+     */
+    protected function generateContentType($format)
+    {
+        switch ($format) {
+            case 'json':
+                return 'application/json';
+            case 'xml' :
+                return 'text/xml';
+            case 'yml':
+                return 'application/yaml';
+            default :
+                return 'text/html';
+        }
     }
 }

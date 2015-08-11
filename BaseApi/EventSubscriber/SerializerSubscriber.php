@@ -4,20 +4,19 @@ namespace OpenOrchestra\BaseApi\EventSubscriber;
 
 use Doctrine\Common\Annotations\Reader;
 use JMS\Serializer\SerializerInterface;
-use OpenOrchestra\BaseApi\Manager\ContentTypeGeneratorTrait;
 use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * Class SerializerSubscriber
  */
 class SerializerSubscriber extends AbstractSubscriber implements EventSubscriberInterface
 {
-    use ContentTypeGeneratorTrait;
     protected $serializer;
 
     /**
@@ -49,13 +48,19 @@ class SerializerSubscriber extends AbstractSubscriber implements EventSubscriber
         }
 
         $format = $event->getRequest()->get('_format', 'json');
+        $statusCode = 200;
+        $controllerResult = $event->getControllerResult();
+        if ($controllerResult instanceof ConstraintViolationListInterface) {
+            $statusCode = 400;
+        }
+
         $event->setResponse(
             new Response(
                 $this->generateResponseContent(
-                    $event->getControllerResult(),
+                    $controllerResult,
                     $format
                 ),
-                200,
+                $statusCode,
                 array('content-type' => $this->generateContentType($format))
             )
         );

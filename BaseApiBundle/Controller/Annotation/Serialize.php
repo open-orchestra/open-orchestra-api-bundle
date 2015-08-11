@@ -6,7 +6,7 @@ namespace OpenOrchestra\BaseApiBundle\Controller\Annotation;
  * Class Serialize
  *
  * @Annotation
- * @Target({"METHOD"})
+ * @Target({"METHOD", "CLASS"})
  */
 class Serialize
 {

@@ -3,7 +3,6 @@
 namespace OpenOrchestra\BaseApiBundle\Controller;
 
 use Doctrine\Common\Inflector\Inflector;
-use OpenOrchestra\BaseApi\Manager\ContentTypeGeneratorTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 abstract class BaseController extends Controller
 {
-    use ContentTypeGeneratorTrait;
     protected $violations;
 
     /**
@@ -68,14 +66,10 @@ abstract class BaseController extends Controller
 
             $this->dispatchEvent($event, new $eventClass($mixed));
 
-            return new Response('', 200);
+            return array();
         }
 
-        return new Response(
-            $this->get('jms_serializer')->serialize($this->getViolations(), $format),
-            400,
-            array('content-type' => $this->generateContentType($format))
-        );
+        return $this->getViolations();
     }
 
     /**
