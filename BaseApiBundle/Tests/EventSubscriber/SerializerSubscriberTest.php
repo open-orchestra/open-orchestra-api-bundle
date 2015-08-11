@@ -100,6 +100,7 @@ class SerializerSubscriberTest extends \PHPUnit_Framework_TestCase
         $koResponse = Phake::mock('Symfony\Component\Validator\ConstraintViolationListInterface');
 
         return array(
+            array('other', 'text/html', false, $okResponse, $okCode),
             array('json', 'application/json', false, $okResponse, $okCode),
             array('xml', 'text/xml', false, $okResponse, $okCode),
             array('yml', 'application/yaml', false, $okResponse, $okCode),
