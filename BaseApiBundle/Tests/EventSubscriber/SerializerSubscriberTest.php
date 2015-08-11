@@ -59,8 +59,8 @@ class SerializerSubscriberTest extends \PHPUnit_Framework_TestCase
     /**
      * @param string $format
      * @param string $responseContentType
+     * @param bool   $classAnnotation
      *
-     * @param $classAnnotation
      * @dataProvider provideFormatAndResponseType
      */
     public function testOnKernelViewSerialize($format, $responseContentType, $classAnnotation, $controllerResult, $expectedStatusCode)
