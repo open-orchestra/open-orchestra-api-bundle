@@ -43,9 +43,9 @@ abstract class AbstractTransformer implements TransformerInterface
     }
 
     /**
-     * @param string  $name
-     * @param array   $parameter
-     * @param boolean $referenceType
+     * @param string         $name
+     * @param array          $parameter
+     * @param boolean|string $referenceType
      *
      * @return string
      */
