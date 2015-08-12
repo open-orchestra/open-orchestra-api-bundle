@@ -5,6 +5,7 @@ parameters:
     open_orchestra_api.context.group.class: OpenOrchestra\BaseApi\Context\GroupContext
     open_orchestra_api.subscriber.group_context.class: OpenOrchestra\BaseApi\EventSubscriber\GroupContextSubscriber
     open_orchestra_api.manager.access_token.class: OpenOrchestra\BaseApi\Manager\AccessTokenManager
+    open_orchestra_api.annotation_search_reader.class: OpenOrchestra\BaseApi\Mapping\Reader\SearchMappingReader
 
 services:
     open_orchestra_api.subscriber.serializer:
@@ -38,3 +39,7 @@ services:
             - @object_manager
             - %open_orchestra_api.document.access_token.class%
             - %open_orchestra_api.token.expiration_time%
+    open_orchestra_api.annotation_search_reader:
+        class: %open_orchestra_api.annotation_search_reader.class%
+        arguments:
+            - @open_orchestra_model.annotation_reader
