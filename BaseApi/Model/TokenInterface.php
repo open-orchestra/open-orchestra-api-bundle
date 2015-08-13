@@ -3,6 +3,7 @@
 namespace OpenOrchestra\BaseApi\Model;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -19,6 +20,16 @@ interface TokenInterface extends BlockableInterface, ExpireableInterface
      * @param string $code
      */
     public function setCode($code);
+
+    /**
+     * @return string
+     */
+    public function getRefreshCode();
+
+    /**
+     * @param string $refreshCode
+     */
+    public function setRefreshCode($refreshCode);
 
     /**
      * @return ApiClientInterface
@@ -54,4 +65,9 @@ interface TokenInterface extends BlockableInterface, ExpireableInterface
      * @return boolean
      */
     public function isValid(ValidatorInterface $validator);
+
+    /**
+     * @return ConstraintViolationListInterface
+     */
+    public function getViolations();
 }
