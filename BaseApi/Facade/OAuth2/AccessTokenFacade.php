@@ -16,6 +16,11 @@ class AccessTokenFacade extends AbstractFacade
     public $accessToken;
 
     /**
+     * @Serializer\Type("string")
+     */
+    public $refreshToken;
+
+    /**
      * @Serializer\Type("DateTime<'d-m-Y H:i:s'>")
      */
     public $expiresAt;

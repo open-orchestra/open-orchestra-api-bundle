@@ -50,13 +50,12 @@ class AccessTokenManager
     public function revokeNonUsedAccessToken(ApiClientInterface $client, UserInterface $user = null)
     {
         $searchParams = array(
-            'client'  => $client->getId(),
+            'client.id'  => $client->getId(),
             'blocked' => false
         );
-        $searchParams['user'] = null;
-        $searchParams['customer'] = null;
+        $searchParams['user.id'] = null;
         if ($user instanceof UserInterface) {
-            $searchParams['user'] = $user->getId();
+            $searchParams['user.id'] = $user->getId();
         }
 
         $accessTokens = $this->accessTokenRepository->findBy($searchParams);

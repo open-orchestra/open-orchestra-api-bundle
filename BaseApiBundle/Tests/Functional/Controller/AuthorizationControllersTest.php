@@ -31,5 +31,11 @@ class AuthorizationControllersTest extends WebTestCase
         $this->client->request('GET', '/oauth/access_token?grant_type=client_credentials', array(), array(), array('PHP_AUTH_USER' => 'test_key', 'PHP_AUTH_PW' => 'test_secret'));
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertSame('application/json', $this->client->getResponse()->headers->get('content-type'));
+        $tokenReponse = json_decode($this->client->getResponse()->getContent(), true);
+        $refreshToken = $tokenReponse['refresh_token'];
+
+        $this->client->request('GET', '/oauth/access_token?grant_type=refresh_token&refresh_token=' . $refreshToken, array(), array(), array('PHP_AUTH_USER' => 'test_key', 'PHP_AUTH_PW' => 'test_secret'));
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertSame('application/json', $this->client->getResponse()->headers->get('content-type'));
     }
 }

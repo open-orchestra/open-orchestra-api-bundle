@@ -21,6 +21,16 @@ interface TokenInterface extends BlockableInterface, ExpireableInterface
     public function setCode($code);
 
     /**
+     * @return string
+     */
+    public function getRefreshCode();
+
+    /**
+     * @param string $refreshCode
+     */
+    public function setRefreshCode($refreshCode);
+
+    /**
      * @return ApiClientInterface
      */
     public function getClient();

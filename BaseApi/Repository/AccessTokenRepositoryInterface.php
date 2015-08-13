@@ -17,6 +17,14 @@ interface AccessTokenRepositoryInterface
     public function findOneByClientWithoutUser(ApiClientInterface $client);
 
     /**
+     * @param ApiClientInterface $client
+     * @param string             $refreshToken
+     *
+     * @return TokenInterface
+     */
+    public function findOneByClientAndRefreshToken(ApiClientInterface $client, $refreshToken);
+
+    /**
      * @param string $token
      *
      * @return TokenInterface
