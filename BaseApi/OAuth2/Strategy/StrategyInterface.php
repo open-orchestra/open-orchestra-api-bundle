@@ -2,8 +2,9 @@
 
 namespace OpenOrchestra\BaseApi\OAuth2\Strategy;
 
+use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * Interface StrategyInterface
@@ -20,7 +21,7 @@ interface StrategyInterface
     /**
      * @param Request $request [description]
      *
-     * @return Response
+     * @return ConstraintViolationListInterface|FacadeInterface
      */
     public function requestToken(Request $request);
 

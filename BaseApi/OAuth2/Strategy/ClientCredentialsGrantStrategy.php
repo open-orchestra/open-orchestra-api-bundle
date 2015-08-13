@@ -2,10 +2,12 @@
 
 namespace OpenOrchestra\BaseApi\OAuth2\Strategy;
 
+use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use OpenOrchestra\BaseApi\Facade\OAuth2\AccessTokenFacade;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use OpenOrchestra\BaseApi\Model\TokenInterface as OrchestraTokenInterface;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * Class ClientCredentialsGrantStrategy
@@ -28,7 +30,7 @@ class ClientCredentialsGrantStrategy extends AbstractStrategy
     /**
      * @param Request $request [description]
      *
-     * @return Response
+     * @return ConstraintViolationListInterface|FacadeInterface
      */
     public function requestToken(Request $request)
     {
@@ -38,9 +40,10 @@ class ClientCredentialsGrantStrategy extends AbstractStrategy
         $accessToken = $this->accessTokenRepository->findOneByClientWithoutUser($client);
 
         if (is_null($accessToken) || $accessToken->isBlocked() || $accessToken->isExpired()) {
+            /** @var OrchestraTokenInterface $accessToken */
             $accessToken = $this->accessTokenManager->create($client);
             if (!$accessToken->isValid($this->validator)) {
-                return Response::create($this->serializer->serialize($accessToken->getViolations(), 'json'), 200, array())->prepare($request);
+                return $accessToken->getViolations();
             }
 
             $this->accessTokenManager->save($accessToken);
@@ -51,7 +54,7 @@ class ClientCredentialsGrantStrategy extends AbstractStrategy
         $tokenFacade->expiresAt     = $accessToken->getExpiredAt();
         $tokenFacade->refreshToken = $accessToken->getRefreshCode();
 
-        return Response::create($this->serializer->serialize($tokenFacade, 'json'), 200, array('Content-Type' => 'application/json'))->prepare($request);
+        return $tokenFacade;
     }
 
     /**

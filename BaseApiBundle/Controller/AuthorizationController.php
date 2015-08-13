@@ -4,9 +4,12 @@ namespace OpenOrchestra\BaseApiBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use OpenOrchestra\BaseApiBundle\Controller\Annotation as Api;
 
 /**
  * Class AuthorizationController
+ *
+ * @Api\Serialize()
  */
 class AuthorizationController extends BaseController
 {

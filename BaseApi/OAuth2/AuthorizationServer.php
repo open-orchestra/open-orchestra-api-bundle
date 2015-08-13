@@ -3,9 +3,11 @@
 namespace OpenOrchestra\BaseApi\OAuth2;
 
 use OpenOrchestra\BaseApi\Exceptions\HttpException\AuthorizationNonSupportedHttpException;
+use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use OpenOrchestra\BaseApi\OAuth2\Strategy\StrategyInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * Class AuthorizationServer
@@ -25,7 +27,7 @@ class AuthorizationServer
     /**
      * @param Request $request
      *
-     * @return Response
+     * @return ConstraintViolationListInterface|FacadeInterface
      * @throws AuthorizationNonSupportedHttpException
      */
     public function requestToken(Request $request)
