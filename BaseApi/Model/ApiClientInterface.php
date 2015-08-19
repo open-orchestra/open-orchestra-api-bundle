@@ -51,4 +51,24 @@ interface ApiClientInterface extends BlockableInterface
      * @return bool
      */
     public function isTrusted();
+
+    /**
+     * @param string $role
+     */
+    public function addRole($role);
+
+    /**
+     * @return array The roles
+     */
+    public function getRoles();
+
+    /**
+     * @param array $roles
+     */
+    public function setRoles(array $roles);
+
+    /**
+     * @param $role
+     */
+    public function removeRole($role);
 }
