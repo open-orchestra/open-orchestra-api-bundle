@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\BaseApi\Security\Authentication\Token;
 
+use OpenOrchestra\BaseApi\Model\ApiClientInterface;
 use OpenOrchestra\BaseApi\Model\TokenInterface;
 use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -50,6 +51,10 @@ class OAuth2Token extends AbstractToken
     public static function createFromAccessTokenEntity(TokenInterface $accessTokenEntity)
     {
         $roles[] = 'ROLE_USER';
+        if (($client = $accessTokenEntity->getClient()) instanceof ApiClientInterface ) {
+            $roles = array_merge($roles, $client->getRoles());
+        }
+
         if ($user = $accessTokenEntity->getUser()) {
             if ($user instanceof UserInterface) {
                 $roles[] = 'ROLE_REAL_USER';
@@ -57,6 +62,8 @@ class OAuth2Token extends AbstractToken
 
             $roles = array_merge($roles, $user->getRoles());
         }
+        $roles = array_unique($roles);
+
         $token = new self($roles);
 
         if ($user) {
