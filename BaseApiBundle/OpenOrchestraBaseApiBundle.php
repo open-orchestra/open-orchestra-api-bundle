@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\BaseApiBundle;
 
+use OpenOrchestra\BaseApiBundle\DependencyInjection\Compiler\FilterTypePaginationCompilerPass;
 use OpenOrchestra\BaseApiBundle\DependencyInjection\Compiler\Oauth2CompilerPass;
 use OpenOrchestra\BaseApiBundle\DependencyInjection\Compiler\TransformerCompilerPass;
 use OpenOrchestra\BaseApiBundle\DependencyInjection\Security\Factory\OAuth2Factory;
@@ -21,6 +22,7 @@ class OpenOrchestraBaseApiBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new TransformerCompilerPass());
+        $container->addCompilerPass(new FilterTypePaginationCompilerPass());
         $container->addCompilerPass(new Oauth2CompilerPass());
 
         $extension = $container->getExtension('security');
