@@ -22,7 +22,6 @@ class OpenOrchestraBaseApiBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new TransformerCompilerPass());
-        $container->addCompilerPass(new FilterTypePaginationCompilerPass());
         $container->addCompilerPass(new Oauth2CompilerPass());
 
         $extension = $container->getExtension('security');

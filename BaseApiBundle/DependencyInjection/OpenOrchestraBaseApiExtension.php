@@ -37,11 +37,5 @@ class OpenOrchestraBaseApiExtension extends Extension
         $loader->load('transformer.yml');
         $loader->load('oauth2.yml');
         $loader->load('security.yml');
-
-        $filterPagincationConfig = __DIR__.'/../../../../open-orchestra-libs/OpenOrchestra/Pagination';
-        if (is_dir($filterPagincationConfig)) {
-            $loaderPaginationConfig = new Loader\YamlFileLoader($container, new FileLocator($filterPagincationConfig.'/MongoTrait/FilterTypeStrategy/'));
-            $loaderPaginationConfig->load('filter_strategy_configuration.yml');
-        }
     }
 }
