@@ -2,7 +2,6 @@
 
 namespace OpenOrchestra\BaseApiBundle;
 
-use OpenOrchestra\BaseApiBundle\DependencyInjection\Compiler\FilterTypePaginationCompilerPass;
 use OpenOrchestra\BaseApiBundle\DependencyInjection\Compiler\Oauth2CompilerPass;
 use OpenOrchestra\BaseApiBundle\DependencyInjection\Compiler\TransformerCompilerPass;
 use OpenOrchestra\BaseApiBundle\DependencyInjection\Security\Factory\OAuth2Factory;
