@@ -28,7 +28,7 @@ class ClientCredentialsGrantStrategy extends AbstractStrategy
     }
 
     /**
-     * @param Request $request [description]
+     * @param Request $request
      *
      * @return ConstraintViolationListInterface|FacadeInterface
      */

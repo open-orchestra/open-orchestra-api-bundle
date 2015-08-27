@@ -19,7 +19,7 @@ interface StrategyInterface
     public function supportRequestToken(Request $request);
 
     /**
-     * @param Request $request [description]
+     * @param Request $request
      *
      * @return ConstraintViolationListInterface|FacadeInterface
      */
