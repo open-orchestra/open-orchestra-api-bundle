@@ -30,7 +30,7 @@ class RefreshTokenStrategy extends AbstractStrategy
     }
 
     /**
-     * @param Request $request [description]
+     * @param Request $request
      *
      * @return ConstraintViolationListInterface|FacadeInterface
      * @throws TokenNotFoundHttpException
