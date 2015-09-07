@@ -34,10 +34,13 @@ class AccessTokenManager
 
     /**
      * @param TokenInterface $accessToken
+     * @param bool           $revokeNonUsedAccessToken
      */
-    public function save(TokenInterface $accessToken)
+    public function save(TokenInterface $accessToken, $revokeNonUsedAccessToken = false)
     {
-        $this->revokeNonUsedAccessToken($accessToken->getClient(), $accessToken->getUser());
+        if ($revokeNonUsedAccessToken) {
+            $this->revokeNonUsedAccessToken($accessToken->getClient(), $accessToken->getUser());
+        }
 
         $this->objectManager->persist($accessToken);
         $this->objectManager->flush();
