@@ -17,11 +17,6 @@ class ClientBlockedHttpException extends ApiException
      */
     public function __construct()
     {
-        $developerMessage   = self::DEVELOPER_MESSAGE;
-        $humanMessage       = self::HUMAN_MESSAGE;
-        $statusCode         = self::STATUS_CODE;
-        $errorCode          = self::ERROR_CODE;
-
-        parent::__construct($statusCode, $errorCode, $developerMessage, $humanMessage);
+        parent::__construct(self::STATUS_CODE, self::ERROR_CODE, self::DEVELOPER_MESSAGE, self::HUMAN_MESSAGE);
     }
 }

@@ -6,7 +6,6 @@ use OpenOrchestra\BaseApi\Exceptions\HttpException\AuthorizationNonSupportedHttp
 use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use OpenOrchestra\BaseApi\OAuth2\Strategy\StrategyInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**

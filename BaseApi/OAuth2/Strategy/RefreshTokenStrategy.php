@@ -7,7 +7,6 @@ use OpenOrchestra\BaseApi\Exceptions\HttpException\TokenNotFoundHttpException;
 use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use OpenOrchestra\BaseApi\Facade\OAuth2\AccessTokenFacade;
 use OpenOrchestra\BaseApi\Model\TokenInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
