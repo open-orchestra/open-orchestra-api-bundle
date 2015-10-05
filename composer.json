@@ -28,10 +28,9 @@
         "bin-dir" : "bin"
     },
     "autoload": {
-        "psr-0": {
-            "OpenOrchestra\\BaseApiBundle": "",
-            "OpenOrchestra\\BaseApi": ""
+        "psr-4": {
+            "OpenOrchestra\\BaseApiBundle\\": "BaseApiBundle/",
+            "OpenOrchestra\\BaseApi\\": "BaseApi/"
         }
-    },
-    "target-dir": "OpenOrchestra"
+    }
 }
