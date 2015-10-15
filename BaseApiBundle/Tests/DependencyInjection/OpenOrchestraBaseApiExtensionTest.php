@@ -34,7 +34,7 @@ class OpenOrchestraBaseApiExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param  string           $file
+     * @param string $file
      *
      * @return ContainerBuilder
      */
