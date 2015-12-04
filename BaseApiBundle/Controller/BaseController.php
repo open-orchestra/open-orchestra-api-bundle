@@ -57,6 +57,7 @@ abstract class BaseController extends Controller
         );
 
         $mixed = $this->get('open_orchestra_model.repository.' . $typeName)->find($id);
+        $oldStatus = $mixed->getStatus();
         $mixed = $this->get('open_orchestra_api.transformer_manager')->get($typeName)->reverseTransform($facade, $mixed);
 
         if ($this->isValid($mixed)) {
@@ -64,7 +65,7 @@ abstract class BaseController extends Controller
             $em->persist($mixed);
             $em->flush();
 
-            $this->dispatchEvent($event, new $eventClass($mixed));
+            $this->dispatchEvent($event, new $eventClass($mixed, $oldStatus));
 
             return array();
         }
