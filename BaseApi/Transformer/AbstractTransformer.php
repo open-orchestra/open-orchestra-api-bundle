@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\BaseApi\Transformer;
 
+use OpenOrchestra\ApiBundle\Exceptions\TransformerParameterTypeException;
 use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -11,10 +12,19 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 abstract class AbstractTransformer implements TransformerInterface
 {
+    protected $facadeClass;
     /**
      * @var TransformerManager
      */
     protected $context;
+
+    /**
+     * @param string $facadeClass
+     */
+    public function __construct($facadeClass)
+    {
+        $this->facadeClass = $facadeClass;
+    }
 
     /**
      * @param TransformerManager $manager
@@ -81,5 +91,21 @@ abstract class AbstractTransformer implements TransformerInterface
      */
     public function reverseTransform(FacadeInterface $facade, $source = null)
     {
+    }
+
+    /**
+     * @throws TransformerParameterTypeException
+     *
+     * @return FacadeInterface
+     */
+    protected function newFacade()
+    {
+        $facade = new $this->facadeClass();
+
+        if (!$facade instanceof FacadeInterface) {
+            throw new TransformerParameterTypeException();
+        }
+
+        return $facade;
     }
 }
