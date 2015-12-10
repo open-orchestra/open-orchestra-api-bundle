@@ -59,7 +59,7 @@ abstract class BaseController extends Controller
 
         $mixed = $this->get('open_orchestra_model.repository.' . $typeName)->find($id);
         $oldStatus = null;
-        if($mixed instanceof StatusableInterface) {
+        if ($mixed instanceof StatusableInterface) {
             $oldStatus = $mixed->getStatus();
         }
         $mixed = $this->get('open_orchestra_api.transformer_manager')->get($typeName)->reverseTransform($facade, $mixed);
@@ -69,7 +69,7 @@ abstract class BaseController extends Controller
             $em->persist($mixed);
             $em->flush();
 
-            if(in_array('OpenOrchestra\ModelInterface\Event\EventTrait\EventStatusable', class_uses($eventClass))) {
+            if (in_array('OpenOrchestra\ModelInterface\Event\EventTrait\EventStatusable', class_uses($eventClass))) {
                 $this->dispatchEvent($event, new $eventClass($mixed, $oldStatus));
 
                 return array();
