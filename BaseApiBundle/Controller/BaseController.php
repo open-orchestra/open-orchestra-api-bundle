@@ -69,7 +69,7 @@ abstract class BaseController extends Controller
             $em->persist($mixed);
             $em->flush();
 
-            if (in_array('OpenOrchestra\ModelInterface\Event\EventTrait\EventStatusable', class_uses($eventClass))) {
+            if (in_array('OpenOrchestra\ModelInterface\Event\EventTrait\EventStatusableInterface', class_implements($eventClass))) {
                 $this->dispatchEvent($event, new $eventClass($mixed, $oldStatus));
 
                 return array();
