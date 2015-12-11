@@ -21,7 +21,7 @@ abstract class AbstractTransformer implements TransformerInterface
     /**
      * @param string $facadeClass
      */
-    public function __construct($facadeClass)
+    public function __construct($facadeClass = null)
     {
         $this->facadeClass = $facadeClass;
     }
