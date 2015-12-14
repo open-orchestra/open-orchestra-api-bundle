@@ -100,6 +100,10 @@ abstract class AbstractTransformer implements TransformerInterface
      */
     protected function newFacade()
     {
+        if (null === $this->facadeClass) {
+            throw new TransformerParameterTypeException();
+        }
+
         $facade = new $this->facadeClass();
 
         if (!$facade instanceof FacadeInterface) {
