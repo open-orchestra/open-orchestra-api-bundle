@@ -3,6 +3,7 @@
 namespace OpenOrchestra\BaseApi\Transformer;
 
 use OpenOrchestra\ApiBundle\Exceptions\TransformerParameterTypeException;
+use OpenOrchestra\BaseApi\Exceptions\HttpException\FacadeClassNotSetException;
 use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -94,14 +95,15 @@ abstract class AbstractTransformer implements TransformerInterface
     }
 
     /**
-     * @throws TransformerParameterTypeException
+     * @return mixed
      *
-     * @return FacadeInterface
+     * @throws FacadeClassNotSetException
+     * @throws TransformerParameterTypeException
      */
     protected function newFacade()
     {
         if (null === $this->facadeClass) {
-            throw new TransformerParameterTypeException();
+            throw new FacadeClassNotSetException();
         }
 
         $facade = new $this->facadeClass();
