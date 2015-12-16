@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 abstract class AbstractTransformer implements TransformerInterface
 {
     protected $facadeClass;
+    
     /**
      * @var TransformerManager
      */
