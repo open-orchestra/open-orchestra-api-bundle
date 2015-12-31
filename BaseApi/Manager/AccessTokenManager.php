@@ -50,14 +50,14 @@ class AccessTokenManager
      * @param ApiClientInterface $client
      * @param UserInterface      $user
      */
-    public function revokeNonUsedAccessToken(ApiClientInterface $client, UserInterface $user = null)
+    protected function revokeNonUsedAccessToken(ApiClientInterface $client, UserInterface $user = null)
     {
         $searchParams = array(
             'client.id'  => $client->getId(),
             'blocked' => false
         );
         $searchParams['user.id'] = null;
-        if ($user instanceof UserInterface) {
+        if ($user instanceof UserInterface && method_exists($user, 'getId')) {
             $searchParams['user.id'] = $user->getId();
         }
 
