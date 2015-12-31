@@ -50,6 +50,7 @@ abstract class AbstractStrategy implements StrategyInterface
      * @param Request $request
      *
      * @return ApiClientInterface
+     *
      * @throws BadClientCredentialsHttpException
      * @throws ClientNonTrustedHttpException
      * @throws ClientBlockedHttpException
@@ -57,7 +58,7 @@ abstract class AbstractStrategy implements StrategyInterface
     protected function getClient(Request $request)
     {
         $client = $this->apiClientRepository->findOneByKeyAndSecret($request->getUser(), $request->getPassword());
-        if (!$client) {
+        if (!$client instanceof ApiClientInterface) {
             throw new BadClientCredentialsHttpException();
         } elseif ($client->isBlocked()) {
             throw new ClientBlockedHttpException();
