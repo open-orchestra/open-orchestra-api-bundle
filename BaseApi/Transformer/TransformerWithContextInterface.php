@@ -17,5 +17,4 @@ interface TransformerWithContextInterface extends TransformerInterface
      * @return mixed
      */
     public function reverseTransformWithContext($context, FacadeInterface $facade, $source = null);
-
 }
