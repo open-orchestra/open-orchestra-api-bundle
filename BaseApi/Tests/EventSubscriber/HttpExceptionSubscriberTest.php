@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\Tests\EventSubscriber;
+namespace OpenOrchestra\BaseApi\Tests\EventSubscriber;
 
 use Phake;
 use OpenOrchestra\BaseApi\EventSubscriber\HttpExceptionSubscriber;

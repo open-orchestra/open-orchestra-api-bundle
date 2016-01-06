@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\Tests\Manager;
+namespace OpenOrchestra\BaseApi\Tests\Manager;
 
 use OpenOrchestra\BaseApi\Manager\AccessTokenManager;
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
@@ -31,7 +31,7 @@ class AccessTokenManagerTest extends \PHPUnit_Framework_TestCase
     {
         $this->accessTokenRepository = Phake::mock('OpenOrchestra\BaseApi\Repository\AccessTokenRepositoryInterface');
         $this->objectManager = Phake::mock('Doctrine\Common\Persistence\ObjectManager');
-        $this->tokenClass = 'OpenOrchestra\BaseApiBundle\Tests\Manager\TestAccessToken';
+        $this->tokenClass = 'OpenOrchestra\BaseApi\Tests\Manager\TestAccessToken';
 
         $this->manager = new AccessTokenManager($this->accessTokenRepository, $this->objectManager, $this->tokenClass, '+1month');
     }
@@ -120,7 +120,7 @@ class AccessTokenManagerTest extends \PHPUnit_Framework_TestCase
         $nonIdUser = Phake::mock('Symfony\Component\Security\Core\User\UserInterface');
 
         $userId = 'baz';
-        $idUser = Phake::mock('OpenOrchestra\BaseApiBundle\Tests\Manager\TestUserWithGetId');
+        $idUser = Phake::mock('OpenOrchestra\BaseApi\Tests\Manager\TestUserWithGetId');
         Phake::when($idUser)->getId()->thenReturn($userId);
 
         return array(

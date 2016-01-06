@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\Tests\OAuth2\Strategy;
+namespace OpenOrchestra\BaseApi\Tests\OAuth2\Strategy;
 
 use OpenOrchestra\BaseApi\OAuth2\Strategy\RefreshTokenStrategy;
 use Phake;

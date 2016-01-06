@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\Tests\EventSubscriber;
+namespace OpenOrchestra\BaseApi\Tests\EventSubscriber;
 
 use OpenOrchestra\BaseApiBundle\Controller\Annotation\Groups;
 use OpenOrchestra\BaseApi\EventSubscriber\GroupContextSubscriber;

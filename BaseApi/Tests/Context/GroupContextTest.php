@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\Tests\Context;
+namespace OpenOrchestra\BaseApi\Tests\Context;
 
 use OpenOrchestra\BaseApi\Context\GroupContext;
 use Phake;
