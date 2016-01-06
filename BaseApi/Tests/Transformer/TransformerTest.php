@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BaseApiBundle\Tests\Transformer;
+namespace OpenOrchestra\BaseApi\Tests\Transformer;
 
 use OpenOrchestra\BaseApi\Transformer\TransformerManager;
 use Phake;
