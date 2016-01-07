@@ -4,13 +4,14 @@ namespace OpenOrchestra\BaseApi\Tests\EventSubscriber;
 
 use OpenOrchestra\BaseApiBundle\Controller\Annotation\Groups;
 use OpenOrchestra\BaseApi\EventSubscriber\GroupContextSubscriber;
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Phake;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Test GroupContextSubscriberTest
  */
-class GroupContextSubscriberTest extends \PHPUnit_Framework_TestCase
+class GroupContextSubscriberTest extends AbstractBaseTestCase
 {
     /**
      * @var GroupContextSubscriber

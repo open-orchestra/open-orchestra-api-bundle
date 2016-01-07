@@ -5,6 +5,7 @@ namespace OpenOrchestra\BaseApi\Tests\Manager;
 use OpenOrchestra\BaseApi\Manager\AccessTokenManager;
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
 use OpenOrchestra\BaseApi\Model\TokenInterface;
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Phake;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
@@ -13,7 +14,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /**
  * Class AccessTokenManagerTest
  */
-class AccessTokenManagerTest extends \PHPUnit_Framework_TestCase
+class AccessTokenManagerTest extends AbstractBaseTestCase
 {
     /**
      * @var AccessTokenManager

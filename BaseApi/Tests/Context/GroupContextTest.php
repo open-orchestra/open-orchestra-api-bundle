@@ -3,12 +3,12 @@
 namespace OpenOrchestra\BaseApi\Tests\Context;
 
 use OpenOrchestra\BaseApi\Context\GroupContext;
-use Phake;
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 
 /**
  * Test GroupContextTest
  */
-class GroupContextTest extends \PHPUnit_Framework_TestCase
+class GroupContextTest extends AbstractBaseTestCase
 {
     /**
      * @var GroupContext

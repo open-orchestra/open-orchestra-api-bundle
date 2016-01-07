@@ -3,12 +3,13 @@
 namespace OpenOrchestra\BaseApi\Tests\Transformer;
 
 use OpenOrchestra\BaseApi\Transformer\TransformerManager;
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Phake;
 
 /**
  * Test TransformerTestCase
  */
-class TransformerTest extends \PHPUnit_Framework_TestCase
+class TransformerTest extends AbstractBaseTestCase
 {
     /**
      * test TransformerManager class
