@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\BaseApi\Tests\EventSubscriber;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Phake;
 use OpenOrchestra\BaseApi\EventSubscriber\HttpExceptionSubscriber;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -10,7 +11,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 /**
  * Class HttpExceptionSubscriberTest
  */
-class HttpExceptionSubscriberTest extends \PHPUnit_Framework_TestCase
+class HttpExceptionSubscriberTest extends AbstractBaseTestCase
 {
     /**
      * @var HttpExceptionSubscriber

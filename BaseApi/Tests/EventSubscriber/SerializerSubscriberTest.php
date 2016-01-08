@@ -3,6 +3,7 @@
 namespace OpenOrchestra\BaseApi\Tests\EventSubscriber;
 
 use OpenOrchestra\BaseApi\EventSubscriber\SerializerSubscriber;
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Phake;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
@@ -12,7 +13,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 /**
  * Test SerializerSubscriberTest
  */
-class SerializerSubscriberTest extends \PHPUnit_Framework_TestCase
+class SerializerSubscriberTest extends AbstractBaseTestCase
 {
     /**
      * @var SerializerSubscriber

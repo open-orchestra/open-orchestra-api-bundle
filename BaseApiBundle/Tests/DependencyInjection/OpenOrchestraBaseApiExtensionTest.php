@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\BaseApiBundle\DependencyInjection;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -9,7 +10,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 /**
  * Class OpenOrchestraBaseApiExtensionTest
  */
-class OpenOrchestraBaseApiExtensionTest extends \PHPUnit_Framework_TestCase
+class OpenOrchestraBaseApiExtensionTest extends AbstractBaseTestCase
 {
     /**
      * Test default value configuration

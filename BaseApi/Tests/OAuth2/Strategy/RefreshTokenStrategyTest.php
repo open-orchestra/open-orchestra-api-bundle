@@ -3,12 +3,13 @@
 namespace OpenOrchestra\BaseApi\Tests\OAuth2\Strategy;
 
 use OpenOrchestra\BaseApi\OAuth2\Strategy\RefreshTokenStrategy;
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use Phake;
 
 /**
  * Test RefreshTokenStrategyTest
  */
-class RefreshTokenStrategyTest extends \PHPUnit_Framework_TestCase
+class RefreshTokenStrategyTest extends AbstractBaseTestCase
 {
     /**
      * @var RefreshTokenStrategy
