@@ -28,7 +28,7 @@ class HttpExceptionSubscriber implements EventSubscriberInterface
      */
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
-        if (!($exception = $event->getException()) instanceof  ApiException ) {
+        if (!($exception = $event->getException()) instanceof ApiException ) {
             return;
         }
 
