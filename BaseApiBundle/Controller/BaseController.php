@@ -24,7 +24,7 @@ abstract class BaseController extends Controller
      */
     protected function isValid($mixed, $validationGroups = null)
     {
-        $this->violations = $this->get('validator')->validate($mixed, $validationGroups);
+        $this->violations = $this->get('validator')->validate($mixed, null, $validationGroups);
 
         return 0 === count($this->getViolations());
     }
