@@ -2,6 +2,8 @@
 
 namespace OpenOrchestra\BaseApi\Facade\Traits;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * Class BaseFacade
  */
