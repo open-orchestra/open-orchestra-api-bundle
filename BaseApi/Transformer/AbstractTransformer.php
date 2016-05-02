@@ -2,7 +2,7 @@
 
 namespace OpenOrchestra\BaseApi\Transformer;
 
-use OpenOrchestra\ApiBundle\Exceptions\TransformerParameterTypeException;
+use OpenOrchestra\BaseApi\Exceptions\TransformerParameterTypeException;
 use OpenOrchestra\BaseApi\Exceptions\HttpException\FacadeClassNotSetException;
 use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use Symfony\Component\Routing\Generator\UrlGenerator;
