@@ -2,21 +2,19 @@
 
 namespace OpenOrchestra\BaseApi\Facade\Traits;
 
-use JMS\Serializer\Annotation as Serializer;
-
 /**
  * Class BaseFacade
  */
 trait BaseFacade
 {
     /**
-     * @Serializer\Type("string")
+     * @JMS\Serializer\Annotation\Type("string")
      */
     public $id;
 
     /**
-     * @Serializer\XmlMap(inline=false, entry="link", keyAttribute="location")
-     * @Serializer\Type("array<string,string>")
+     * @JMS\Serializer\Annotation\XmlMap(inline=false, entry="link", keyAttribute="location")
+     * @JMS\Serializer\Annotation\Type("array<string,string>")
      */
     protected $links = array();
 
