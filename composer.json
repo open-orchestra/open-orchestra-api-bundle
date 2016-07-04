@@ -23,10 +23,6 @@
     "codeclimate/php-test-reporter": "~0.3.2"
   },
 
-  "suggest" : {
-    "open-orchestra/open-orchestra-mongo-model-bundle": "1.2.*@dev"
-  },
-
   "config" : {
     "bin-dir": "bin"
   },
