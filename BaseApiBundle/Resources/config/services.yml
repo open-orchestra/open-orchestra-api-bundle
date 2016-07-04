@@ -8,33 +8,33 @@ parameters:
 
 services:
     open_orchestra_api.subscriber.serializer:
-        class: %open_orchestra_api.subscriber.serializer.class%
+        class: '%open_orchestra_api.subscriber.serializer.class%'
         arguments:
-            - @serializer
-            - @annotation_reader
-            - @controller_resolver
+            - '@serializer'
+            - '@annotation_reader'
+            - '@controller_resolver'
         tags:
             - { name: kernel.event_subscriber }
     open_orchestra_api.subscriber.http_exception:
-        class: %open_orchestra_api.subscriber.http_exception.class%
+        class: '%open_orchestra_api.subscriber.http_exception.class%'
         arguments:
-            - %open_orchestra_api.controller.http_exception_controller%
+            - '%open_orchestra_api.controller.http_exception_controller%'
         tags:
             - { name: kernel.event_subscriber }
     open_orchestra_api.context.group:
-        class: %open_orchestra_api.context.group.class%
+        class: '%open_orchestra_api.context.group.class%'
     open_orchestra_api.subscriber.group_context:
-        class: %open_orchestra_api.subscriber.group_context.class%
+        class: '%open_orchestra_api.subscriber.group_context.class%'
         arguments:
-            - @open_orchestra_api.context.group
-            - @annotation_reader
-            - @controller_resolver
+            - '@open_orchestra_api.context.group'
+            - '@annotation_reader'
+            - '@controller_resolver'
         tags:
             - { name: kernel.event_subscriber }
     open_orchestra_api.manager.access_token:
-        class: %open_orchestra_api.manager.access_token.class%
+        class: '%open_orchestra_api.manager.access_token.class%'
         arguments:
-            - @open_orchestra_api.repository.access_token
-            - @object_manager
-            - %open_orchestra_api.document.access_token.class%
-            - %open_orchestra_api.token.expiration_time%
+            - '@open_orchestra_api.repository.access_token'
+            - '@object_manager'
+            - '%open_orchestra_api.document.access_token.class%'
+            - '%open_orchestra_api.token.expiration_time%'
