@@ -10,6 +10,7 @@
   ],
   "require": {
     "jms/serializer-bundle" : "1.0.0",
+    "jms/serializer" : "~1.1.0",
     "symfony/validator": "*",
     "open-orchestra/open-orchestra-base-bundle": "self.version",
     "open-orchestra/open-orchestra-libs": "self.version"
