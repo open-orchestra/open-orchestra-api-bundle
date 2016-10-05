@@ -29,9 +29,11 @@ interface ApiClientRepositoryInterface extends PaginationRepositoryInterface
     public function findForPaginate(PaginateFinderConfiguration $configuration);
 
     /**
+     * @param FinderConfiguration $configuration
+     *
      * @return int
      */
-    public function count();
+    public function count(FinderConfiguration $configuration);
 
     /**
      * @param FinderConfiguration $configuration
