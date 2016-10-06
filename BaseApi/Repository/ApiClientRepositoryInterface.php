@@ -19,24 +19,4 @@ interface ApiClientRepositoryInterface extends PaginationRepositoryInterface
      * @return ApiClientInterface
      */
     public function findOneByKeyAndSecret($key, $secret);
-
-    /**
-     * @param PaginateFinderConfiguration $configuration
-     *
-     * @return mixed
-     * @throws \Doctrine\ODM\MongoDB\MongoDBException
-     */
-    public function findForPaginate(PaginateFinderConfiguration $configuration);
-
-    /**
-     * @return int
-     */
-    public function count();
-
-    /**
-     * @param FinderConfiguration $configuration
-     *
-     * @return mixed
-     */
-    public function countWithFilter(FinderConfiguration $configuration);
 }
