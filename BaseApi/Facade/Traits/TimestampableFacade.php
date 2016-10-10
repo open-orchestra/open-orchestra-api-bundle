@@ -8,12 +8,12 @@ namespace OpenOrchestra\BaseApi\Facade\Traits;
 trait TimestampableFacade
 {
     /**
-     * @Serializer\Type("DateTime<'d/m/Y H:i:s'>")
+     * @\JMS\Serializer\Annotation\Type("DateTime<'d/m/Y H:i:s'>")
      */
     public $createdAt;
 
     /**
-     * @Serializer\Type("DateTime<'d/m/Y H:i:s'>")
+     * @\JMS\Serializer\Annotation\Type("DateTime<'d/m/Y H:i:s'>")
      */
     public $updatedAt;
 }
