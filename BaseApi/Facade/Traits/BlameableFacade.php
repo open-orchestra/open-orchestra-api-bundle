@@ -8,12 +8,12 @@ namespace OpenOrchestra\BaseApi\Facade\Traits;
 trait BlameableFacade
 {
     /**
-     * @Serializer\Type("string")
+     * @\JMS\Serializer\Annotation\Type("string")
      */
     public $createdBy;
 
     /**
-     * @Serializer\Type("string")
+     * @\JMS\Serializer\Annotation\Type("string")
      */
     public $updatedBy;
 }
