@@ -8,13 +8,13 @@ namespace OpenOrchestra\BaseApi\Facade\Traits;
 trait BaseFacade
 {
     /**
-     * @JMS\Serializer\Annotation\Type("string")
+     * @\JMS\Serializer\Annotation\Type("string")
      */
     public $id;
 
     /**
-     * @JMS\Serializer\Annotation\XmlMap(inline=false, entry="link", keyAttribute="location")
-     * @JMS\Serializer\Annotation\Type("array<string,string>")
+     * @\JMS\Serializer\Annotation\XmlMap(inline=false, entry="link", keyAttribute="location")
+     * @\JMS\Serializer\Annotation\Type("array<string,string>")
      */
     protected $links = array();
 
