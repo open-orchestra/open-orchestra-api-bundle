@@ -14,7 +14,7 @@ trait BaseFacade
 
     /**
      * @\JMS\Serializer\Annotation\XmlMap(inline=false, entry="right", keyAttribute="location")
-     * @\JMS\Serializer\Annotation\Type("array<string,bool>")
+     * @\JMS\Serializer\Annotation\Type("array<string,boolean>")
      */
     protected $rights = array();
 
