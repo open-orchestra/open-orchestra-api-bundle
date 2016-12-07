@@ -7,6 +7,8 @@ namespace OpenOrchestra\BaseApi\Model;
  */
 interface ApiClientInterface extends BlockableInterface
 {
+    const ENTITY_TYPE = 'ApiClient';
+
     /**
      * @return int
      */
