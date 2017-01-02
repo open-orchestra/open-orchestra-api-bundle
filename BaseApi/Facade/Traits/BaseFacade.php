@@ -15,7 +15,7 @@ trait BaseFacade
     public $id;
 
     /**
-     * @SerializerXmlMap(inline=false, entry="right", keyAttribute="location")
+     * @Serializer\XmlMap(inline=false, entry="right", keyAttribute="location")
      * @Serializer\Type("array<string,boolean>")
      */
     protected $rights = array();
