@@ -38,3 +38,9 @@ services:
             - '@object_manager'
             - '%open_orchestra_api.document.access_token.class%'
             - '%open_orchestra_api.token.expiration_time%'
+    jms_serializer.handlers.datetime:
+        class: '%jms_serializer.datetime_handler.class%'
+        arguments:
+            - '%open_orchestra_api.handlers.datetime.default_format%'
+            - '%open_orchestra_api.handlers.datetime.default_timezone%'
+            - '%open_orchestra_api.handlers.datetime.cdata%'
