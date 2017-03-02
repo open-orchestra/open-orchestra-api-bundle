@@ -21,14 +21,6 @@ trait BaseFacade
     protected $rights = array();
 
     /**
-     * @Serializer\XmlMap(inline=false, entry="link", keyAttribute="location")
-     * @Serializer\Type("array<string,string>")
-     *
-     * @deprecated To be removed in 2.0
-     */
-    protected $links = array();
-
-    /**
      * @param array $rights
      */
     public function setRights($rights)
@@ -51,36 +43,5 @@ trait BaseFacade
     public function getRights()
     {
         return $this->rights;
-    }
-
-    /**
-     * @param array $links
-     *
-     * @deprecated To be removed in 2.0
-     */
-    public function setLinks($links)
-    {
-        $this->links = $links;
-    }
-
-    /**
-     * @param string $name
-     * @param string $link
-     *
-     * @deprecated To be removed in 2.0
-     */
-    public function addLink($name, $link)
-    {
-        $this->links[$name] = $link;
-    }
-
-    /**
-     * @return array
-     *
-     * @deprecated To be removed in 2.0
-     */
-    public function getLinks()
-    {
-        return $this->links;
     }
 }
