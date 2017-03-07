@@ -14,9 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * Class AbstractStrategy
+ * Class AbstractOAuth2Strategy
  */
-abstract class AbstractStrategy implements StrategyInterface
+abstract class AbstractOAuth2Strategy implements StrategyInterface
 {
     protected $accessTokenRepository;
     protected $apiClientRepository;

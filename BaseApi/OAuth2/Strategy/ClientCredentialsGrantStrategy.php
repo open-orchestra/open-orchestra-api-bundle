@@ -12,7 +12,7 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 /**
  * Class ClientCredentialsGrantStrategy
  */
-class ClientCredentialsGrantStrategy extends AbstractStrategy
+class ClientCredentialsGrantStrategy extends AbstractOAuth2Strategy
 {
     /**
      * @param Request $request
