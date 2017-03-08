@@ -13,7 +13,7 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 /**
  * Class RefreshTokenStrategy
  */
-class RefreshTokenStrategy extends AbstractStrategy
+class RefreshTokenStrategy extends AbstractOAuth2Strategy
 {
     /**
      * @param Request $request
