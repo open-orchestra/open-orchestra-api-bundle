@@ -3,12 +3,11 @@
 namespace OpenOrchestra\BaseApi\Repository;
 
 use OpenOrchestra\BaseApi\Model\ApiClientInterface;
-use OpenOrchestra\Pagination\Configuration\PaginationRepositoryInterface;
 
 /**
  * Class ApiClientRepository
  */
-interface ApiClientRepositoryInterface extends PaginationRepositoryInterface
+interface ApiClientRepositoryInterface
 {
     /**
      * @param string $key
