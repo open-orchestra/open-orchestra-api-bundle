@@ -22,7 +22,7 @@ abstract class AbstractTransformer implements TransformerInterface
     protected $arrayCache;
 
     /**
-     * @param string     $facadeClass
+     * @param string $facadeClass
      */
     public function __construct(
         $facadeClass = null
