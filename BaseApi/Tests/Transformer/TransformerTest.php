@@ -23,11 +23,13 @@ class TransformerTest extends AbstractBaseTestCase
 
         $router = Phake::mock('Symfony\Component\Routing\RouterInterface');
         $groupContext = Phake::mock('OpenOrchestra\BaseApi\Context\GroupContext');
-        $transformerManager = new TransformerManager($router, $groupContext);
+        $arrayCache = Phake::mock('Doctrine\Common\Cache\ArrayCache');
+        $transformerManager = new TransformerManager($router, $groupContext, $arrayCache);
         $transformerManager->addTransformer($transformer);
 
         $this->assertSame($transformerManager->get($name), $transformer);
         $this->assertSame($transformerManager->getRouter(), $router);
         $this->assertSame($transformerManager->getGroupContext(), $groupContext);
+        $this->assertSame($transformerManager->getArrayCache(), $arrayCache);
     }
 }

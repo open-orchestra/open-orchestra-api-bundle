@@ -7,3 +7,4 @@ services:
         arguments:
             - '@router'
             - '@open_orchestra_api.context.group'
+            - '@open_orchestra_api.transformer.cache.array'

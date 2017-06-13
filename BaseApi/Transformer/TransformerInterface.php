@@ -29,14 +29,6 @@ interface TransformerInterface
      *
      * @return mixed
      */
-    public function cacheReverseTransform(FacadeInterface $facade, $source = null);
-
-    /**
-     * @param FacadeInterface $facade
-     * @param mixed|null      $source
-     *
-     * @return mixed
-     */
     public function reverseTransform(FacadeInterface $facade, $source = null);
 
     /**

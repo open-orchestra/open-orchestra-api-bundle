@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\BaseApi\Transformer;
 
+use Doctrine\Common\Cache\ArrayCache;
 use OpenOrchestra\BaseApi\Context\GroupContext;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -11,17 +12,22 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class TransformerManager
 {
     protected $transformers = array();
-    protected $groupContext;
     protected $router;
+    protected $groupContext;
+    protected $arrayCache;
 
     /**
      * @param UrlGeneratorInterface $router
      * @param GroupContext          $groupContext
      */
-    public function __construct(UrlGeneratorInterface $router, GroupContext $groupContext)
+    public function __construct(
+        UrlGeneratorInterface $router,
+        GroupContext $groupContext,
+        ArrayCache $arrayCache)
     {
         $this->router = $router;
         $this->groupContext = $groupContext;
+        $this->arrayCache = $arrayCache;
     }
 
     /**
@@ -57,5 +63,13 @@ class TransformerManager
     public function getGroupContext()
     {
         return $this->groupContext;
+    }
+
+    /**
+     * @return ArrayCache
+     */
+    public function getArrayCache()
+    {
+        return $this->arrayCache;
     }
 }
