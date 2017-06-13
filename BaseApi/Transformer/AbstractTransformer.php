@@ -8,6 +8,8 @@ use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+use Doctrine\Common\Cache\ArrayCache;
+
 /**
  * Class AbstractTransformer
  */
@@ -19,12 +21,17 @@ abstract class AbstractTransformer implements TransformerInterface
      * @var TransformerManager
      */
     protected $context;
+    protected $arrayCache;
 
     /**
-     * @param string $facadeClass
+     * @param ArrayCache $arrayCache
+     * @param string     $facadeClass
      */
-    public function __construct($facadeClass = null)
-    {
+    public function __construct(
+        ArrayCache $arrayCache,
+        $facadeClass = null
+    ) {
+        $this->arrayCache = $arrayCache;
         $this->facadeClass = $facadeClass;
     }
 
@@ -81,8 +88,51 @@ abstract class AbstractTransformer implements TransformerInterface
      *
      * @return FacadeInterface
      */
+    public function cacheTransform($mixed)
+    {
+        $isObject = is_object($mixed);
+        if ($isObject) {
+            $id = spl_object_hash($mixed) . '-' . spl_object_hash($this->context->getGroupContext());
+            if ($this->arrayCache->contains($id)) {
+                return $this->arrayCache->fetch($id);
+            }
+        }
+        $transformation = $this->transform($mixed);
+        if ($isObject) {
+            $this->arrayCache->save($id, $transformation);
+        }
+
+        return $transformation;
+    }
+
+    /**
+     * @param mixed $mixed
+     *
+     * @return FacadeInterface
+     */
     public function transform($mixed)
     {
+    }
+
+    /**
+     * @param FacadeInterface $facade
+     * @param mixed|null      $source
+     *
+     * @return mixed
+     */
+    public function cacheReverseTransform(FacadeInterface $facade, $source = null)
+    {
+        $id = spl_object_hash($facade) . '-' . spl_object_hash($this->context->getGroupContext());
+        if (is_object($source)) {
+            $id .= '-' . spl_object_hash($source);
+        }
+        if ($this->arrayCache->contains($id)) {
+            return $this->arrayCache->fetch($id);
+        }
+        $reverseTransformation = $this->reverseTransform($facade, $source);
+        $this->arrayCache->save($id, $reverseTransformation);
+
+        return $reverseTransformation;
     }
 
     /**

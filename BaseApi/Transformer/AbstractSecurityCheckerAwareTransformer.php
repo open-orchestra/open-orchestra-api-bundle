@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\BaseApi\Transformer;
 
+use Doctrine\Common\Cache\ArrayCache;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
@@ -15,12 +16,16 @@ abstract class AbstractSecurityCheckerAwareTransformer extends AbstractTransform
     protected $authorizationChecker;
 
     /**
+     * @param ArrayCache                    $arrayCache
      * @param string                        $facadeClass
      * @param AuthorizationCheckerInterface $authorizationChecker
      */
-    public function __construct($facadeClass, AuthorizationCheckerInterface $authorizationChecker)
+    public function __construct(
+        ArrayCache $arrayCache,
+        $facadeClass = null,
+        AuthorizationCheckerInterface $authorizationChecker)
     {
-        parent::__construct($facadeClass);
+        parent::__construct($arrayCache, $facadeClass);
         $this->authorizationChecker = $authorizationChecker;
     }
 }
