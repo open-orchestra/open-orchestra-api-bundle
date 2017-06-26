@@ -85,17 +85,16 @@ abstract class AbstractTransformer implements TransformerInterface
      */
     public function cacheTransform($mixed)
     {
-        $isObject = is_object($mixed);
-        if ($isObject) {
-            $id = spl_object_hash($mixed) . '-' . spl_object_hash($this->context->getGroupContext());
-            if ($this->context->getArrayCache()->contains($id)) {
-                return $this->context->getArrayCache()->fetch($id);
-            }
+        if (!is_object($mixed)) {
+            return $this->transform($mixed);
+        }
+
+        $id = spl_object_hash($mixed) . '-' . spl_object_hash($this->context->getGroupContext());
+        if ($this->context->getArrayCache()->contains($id)) {
+            return $this->context->getArrayCache()->fetch($id);
         }
         $transformation = $this->transform($mixed);
-        if ($isObject) {
-            $this->context->getArrayCache()->save($id, $transformation);
-        }
+        $this->context->getArrayCache()->save($id, $transformation);
 
         return $transformation;
     }
