@@ -49,6 +49,14 @@ abstract class AbstractTransformer implements TransformerInterface
     }
 
     /**
+     * @return TransformerManager $manager
+     */
+    protected function getContext()
+    {
+        return $this->context;
+    }
+
+    /**
      * @return UrlGenerator
      */
     protected function getRouter()
@@ -83,27 +91,6 @@ abstract class AbstractTransformer implements TransformerInterface
      *
      * @return FacadeInterface
      */
-    public function cacheTransform($mixed)
-    {
-        if (!is_object($mixed)) {
-            return $this->transform($mixed);
-        }
-
-        $id = spl_object_hash($mixed) . '-' . spl_object_hash($this->context->getGroupContext());
-        if ($this->context->getArrayCache()->contains($id)) {
-            return $this->context->getArrayCache()->fetch($id);
-        }
-        $transformation = $this->transform($mixed);
-        $this->context->getArrayCache()->save($id, $transformation);
-
-        return $transformation;
-    }
-
-    /**
-     * @param mixed $mixed
-     *
-     * @return FacadeInterface
-     */
     public function transform($mixed)
     {
     }
@@ -116,6 +103,13 @@ abstract class AbstractTransformer implements TransformerInterface
      */
     public function reverseTransform(FacadeInterface $facade, $source = null)
     {
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCached(){
+        return false;
     }
 
     /**
