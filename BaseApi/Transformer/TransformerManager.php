@@ -75,13 +75,13 @@ class TransformerManager
     }
 
     /**
-     * @param string $name
-     * @param mixed  $entity
-     * @param mixed  $params
+     * @param string     $name
+     * @param mixed      $entity
+     * @param array|null $params
      *
      * @return FacadeInterface
      */
-    public function transform($name, $entity, $params = null) {
+    public function transform($name, $entity, array $params = null) {
         $transformer = $this->transformers[$name];
 
         if (!is_object($entity) || !$transformer->isCached()) {
@@ -99,13 +99,13 @@ class TransformerManager
     }
 
     /**
-     * @param string $name
-     * @param mixed  $entity
-     * @param mixed  $params
+     * @param string     $name
+     * @param mixed      $entity
+     * @param mixed|null $params
      *
      * @return mixed
      */
-    public function reverseTransform($name, $entity, $params = null) {
+    public function reverseTransform($name, $entity, array $params = null) {
         return $this->transformers[$name]->reverseTransform($entity, $params);
     }
 }

@@ -88,20 +88,21 @@ abstract class AbstractTransformer implements TransformerInterface
 
     /**
      * @param mixed $mixed
+     * @param array|null $params
      *
      * @return FacadeInterface
      */
-    public function transform($mixed)
+    public function transform($mixed, array $params = null)
     {
     }
 
     /**
      * @param FacadeInterface $facade
-     * @param mixed|null      $source
+     * @param array|null      $params
      *
      * @return mixed
      */
-    public function reverseTransform(FacadeInterface $facade, $source = null)
+    public function reverseTransform(FacadeInterface $facade, array $params = null)
     {
     }
 
