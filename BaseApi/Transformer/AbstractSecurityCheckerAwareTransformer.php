@@ -18,7 +18,9 @@ abstract class AbstractSecurityCheckerAwareTransformer extends AbstractTransform
      * @param string                        $facadeClass
      * @param AuthorizationCheckerInterface $authorizationChecker
      */
-    public function __construct($facadeClass, AuthorizationCheckerInterface $authorizationChecker)
+    public function __construct(
+        $facadeClass = null,
+        AuthorizationCheckerInterface $authorizationChecker)
     {
         parent::__construct($facadeClass);
         $this->authorizationChecker = $authorizationChecker;

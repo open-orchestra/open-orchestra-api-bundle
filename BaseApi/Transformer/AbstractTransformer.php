@@ -19,12 +19,14 @@ abstract class AbstractTransformer implements TransformerInterface
      * @var TransformerManager
      */
     protected $context;
+    protected $arrayCache;
 
     /**
      * @param string $facadeClass
      */
-    public function __construct($facadeClass = null)
-    {
+    public function __construct(
+        $facadeClass = null
+    ) {
         $this->facadeClass = $facadeClass;
     }
 
@@ -44,6 +46,14 @@ abstract class AbstractTransformer implements TransformerInterface
     protected function getTransformer($name)
     {
         return $this->context->get($name);
+    }
+
+    /**
+     * @return TransformerManager $manager
+     */
+    protected function getContext()
+    {
+        return $this->context;
     }
 
     /**
@@ -78,21 +88,29 @@ abstract class AbstractTransformer implements TransformerInterface
 
     /**
      * @param mixed $mixed
+     * @param array $params
      *
      * @return FacadeInterface
      */
-    public function transform($mixed)
+    public function transform($mixed, array $params = array())
     {
     }
 
     /**
      * @param FacadeInterface $facade
-     * @param mixed|null      $source
+     * @param array           $params
      *
      * @return mixed
      */
-    public function reverseTransform(FacadeInterface $facade, $source = null)
+    public function reverseTransform(FacadeInterface $facade, array $params = array())
     {
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCached(){
+        return false;
     }
 
     /**

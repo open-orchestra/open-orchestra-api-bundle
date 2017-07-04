@@ -62,7 +62,7 @@ abstract class BaseController extends Controller
         if ($mixed instanceof StatusableInterface) {
             $oldStatus = $mixed->getStatus();
         }
-        $mixed = $this->get('open_orchestra_api.transformer_manager')->get($typeName)->reverseTransform($facade, $mixed);
+        $mixed = $this->get('open_orchestra_api.transformer_manager')->reverseTransform($typeName, $facade, $mixed);
 
         if ($this->isValid($mixed)) {
             $em = $this->get('object_manager');
