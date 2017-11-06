@@ -10,7 +10,7 @@ services:
     open_orchestra_api.subscriber.serializer:
         class: '%open_orchestra_api.subscriber.serializer.class%'
         arguments:
-            - '@serializer'
+            - '@jms_serializer'
             - '@annotation_reader'
             - '@controller_resolver'
         tags:
