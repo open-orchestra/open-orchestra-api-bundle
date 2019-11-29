@@ -19,8 +19,8 @@
     "doctrine/cache": "~1.6.1",
     "jms/serializer-bundle" : "~1.1.0",
     "symfony/validator": "~2.8.6",
-    "open-orchestra/open-orchestra-base-bundle": "self.version",
-    "open-orchestra/open-orchestra-libs": "self.version"
+    "open-orchestra/open-orchestra-base-bundle": "dev-test-7.2",
+    "open-orchestra/open-orchestra-libs": "dev-test-7.2"
   },
 
   "require-dev": {
